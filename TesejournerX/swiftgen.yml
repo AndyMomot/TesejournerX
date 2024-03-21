@@ -1,0 +1,31 @@
+strings:
+  inputs:
+    - TesejournerX/Resources/Localization
+  outputs:
+    - templateName: structured-swift5
+      output: TesejournerX/Resources/Localization/Strings.generated.swift
+      params:
+        enumName: Strings
+
+xcassets:
+  - inputs:
+    - TesejournerX/Resources/Images
+    outputs:
+      - templateName: swift5
+        output: TesejournerX/Resources/Images/Images.generated.swift
+  - inputs:
+    - TesejournerX/Resources/Colors/Colors.xcassets
+    outputs:
+      - templateName: swift5
+        output: TesejournerX/Resources/Colors/Colors.generated.swift
+        params:
+          enumName: Colors
+          
+fonts:
+  - inputs: TesejournerX/Resources/Fonts
+    outputs:
+    - templateName: swift5
+      output: TesejournerX/Resources/Fonts/Fonts.generated.swift
+      params:
+        enumName: Fonts
+
