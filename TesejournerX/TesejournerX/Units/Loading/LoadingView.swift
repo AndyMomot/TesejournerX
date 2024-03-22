@@ -12,79 +12,89 @@ struct LoadingView: View {
     @State private var progressColors: [Color] = []
     @State private var showNext = false
     
+    private var isFirstLaunching = false
+    
     private var percent: Int {
         return Int(progress * 100)
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Color.white
-                    .ignoresSafeArea()
-                
-                VStack(alignment: .center, spacing: 0) {
-                    Spacer()
-
-                    HStack {
+        NavigationStack {
+            GeometryReader { geometry in
+                ZStack {
+                    Color.white
+                        .ignoresSafeArea()
+                    
+                    VStack(alignment: .center, spacing: 0) {
                         Spacer()
-                        Image(Asset.logoObject.name)
+                        
+                        HStack {
+                            Spacer()
+                            Image(Asset.logoObject.name)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: geometry.size.width * 0.165)
+                            Spacer()
+                        }
+                        
+                        Text("Ładowanie...")
+                            .foregroundColor(Colors.orange.swiftUIColor)
+                            .font(Fonts.LexendDeca.bold.swiftUIFont(size: 24))
+                            .padding(.top, 17)
+                        
+                        ZStack {
+                            Capsule(style: .continuous)
+                                .frame(
+                                    width: geometry.size.width * 0.63,
+                                    height: geometry.size.height * 0.023)
+                            
+                                .foregroundColor(Colors.liteGray.swiftUIColor)
+                            
+                            HStack {
+                                LinearGradient(
+                                    gradient: Gradient(colors: progressColors),
+                                    startPoint: .bottomLeading,
+                                    endPoint: .topTrailing
+                                )
+                                .frame(
+                                    width: (geometry.size.width * 0.63) * progress,
+                                    height: geometry.size.height * 0.023)
+                                .cornerRadius(20)
+                                
+                                Spacer(minLength: 0)
+                            }
+                            
+                            .frame(
+                                width: geometry.size.width * 0.63)
+                        }
+                        .padding(.top, 17)
+                        
+                        Text("Jeśli byłbyś tak miły i sprawdził to. (\(percent)%)")
+                            .foregroundColor(Colors.middleGray.swiftUIColor)
+                            .font(Fonts.LexendDeca.bold.swiftUIFont(fixedSize: 14))
+                            .padding(.top, 14)
+                        
+                        Image(Asset.relaxWithCoffe.name)
                             .resizable()
                             .scaledToFit()
-                        .frame(width: geometry.size.width * 0.165)
+                            .padding(.top, 60)
+                            .padding(.horizontal, 27)
                         Spacer()
                     }
-
-                    Text("Ładowanie...")
-                        .foregroundColor(Colors.orange.swiftUIColor)
-                        .font(Fonts.LexendDeca.bold.swiftUIFont(size: 24))
-                        .padding(.top, 17)
-
-                    ZStack {
-                        Capsule(style: .continuous)
-                            .frame(
-                                width: geometry.size.width * 0.63,
-                                height: geometry.size.height * 0.023)
-
-                            .foregroundColor(Colors.liteGray.swiftUIColor)
-
-                        HStack {
-                            LinearGradient(
-                                gradient: Gradient(colors: progressColors),
-                                startPoint: .bottomLeading,
-                                endPoint: .topTrailing
-                            )
-                            .frame(
-                                width: (geometry.size.width * 0.63) * progress,
-                                height: geometry.size.height * 0.023)
-                            .cornerRadius(20)
-
-                            Spacer(minLength: 0)
-                        }
-
-                        .frame(
-                            width: geometry.size.width * 0.63)
+                    .onAppear {
+                        startTimer()
                     }
-                    .padding(.top, 17)
-
-                    Text("Jeśli byłbyś tak miły i sprawdził to. (\(percent)%)")
-                        .foregroundColor(Colors.middleGray.swiftUIColor)
-                        .font(Fonts.LexendDeca.bold.swiftUIFont(fixedSize: 14))
-                        .padding(.top, 14)
-
-                    Image(Asset.relaxWithCoffe.name)
-                        .resizable()
-                        .scaledToFit()
-                        .padding(.top, 60)
-                        .padding(.horizontal, 27)
-                    Spacer()
+                    .onChange(of: progress) { newValue in
+                        showNext = newValue >= 1
+                    }
                 }
-                .onAppear {
-                    startTimer()
+            }
+            .navigationDestination(
+                isPresented: $showNext) {
+                    AgreementsView()
+                    Text("")
+                        .hidden()
                 }
-                .onChange(of: progress) { newValue in
-                    showNext = newValue >= 1
-            }
-            }
         }
     }
 }
