@@ -22,11 +22,24 @@ internal typealias AssetImageTypeAlias = ImageAsset.Image
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
+  internal static let homeBg = ImageAsset(name: "homeBg")
   internal static let agreenents = ImageAsset(name: "agreenents")
   internal static let logo = ImageAsset(name: "logo")
   internal static let logoObject = ImageAsset(name: "logoObject")
   internal static let progressTrak = ImageAsset(name: "progressTrak")
   internal static let relaxWithCoffe = ImageAsset(name: "relaxWithCoffe")
+  internal static let search = ImageAsset(name: "Search")
+  internal static let sortingRight = ImageAsset(name: "SortingRight")
+  internal static let star = ImageAsset(name: "Star")
+  internal static let budgetTab = ImageAsset(name: "budgetTab")
+  internal static let budgetTabSelected = ImageAsset(name: "budgetTabSelected")
+  internal static let helpTab = ImageAsset(name: "helpTab")
+  internal static let helpTabSelected = ImageAsset(name: "helpTabSelected")
+  internal static let homeTab = ImageAsset(name: "homeTab")
+  internal static let homeTabSelected = ImageAsset(name: "homeTabSelected")
+  internal static let leftArrow = ImageAsset(name: "leftArrow")
+  internal static let settingsTab = ImageAsset(name: "settingsTab")
+  internal static let settingsTabSelected = ImageAsset(name: "settingsTabSelected")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

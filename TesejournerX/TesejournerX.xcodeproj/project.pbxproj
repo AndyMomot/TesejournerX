@@ -21,6 +21,14 @@
 		4773E7302BAD82CF007EFD34 /* SwiftUIViewWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E72F2BAD82CF007EFD34 /* SwiftUIViewWebView.swift */; };
 		4773E7332BAD832F007EFD34 /* StaticFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E7322BAD832F007EFD34 /* StaticFiles.swift */; };
 		4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E7392BADA0E6007EFD34 /* HomeView.swift */; };
+		4773ECE42BADDD91007EFD34 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECE32BADDD91007EFD34 /* TabBarView.swift */; };
+		4773ECE62BADDF0A007EFD34 /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECE52BADDF0A007EFD34 /* CustomTabBarView.swift */; };
+		4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECEC2BADE923007EFD34 /* AuthViewModel.swift */; };
+		4773ECEF2BADEED8007EFD34 /* View+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECEE2BADEED8007EFD34 /* View+Additions.swift */; };
+		4773ECF22BADF10C007EFD34 /* DateSwitcherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECF12BADF10C007EFD34 /* DateSwitcherView.swift */; };
+		4773ECF52BADF497007EFD34 /* TopTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECF42BADF497007EFD34 /* TopTabView.swift */; };
+		4773ECF72BADFB3E007EFD34 /* BalanceStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECF62BADFB3E007EFD34 /* BalanceStatusView.swift */; };
+		4773ECF92BADFD81007EFD34 /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773ECF82BADFD81007EFD34 /* Double+Additions.swift */; };
 		4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BAF42BAB581700C9F429 /* AppDelegate.swift */; };
 		4798BAF72BAB581700C9F429 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BAF62BAB581700C9F429 /* SceneDelegate.swift */; };
 		4798BAF92BAB581700C9F429 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BAF82BAB581700C9F429 /* ViewController.swift */; };
@@ -57,6 +65,14 @@
 		4773E72F2BAD82CF007EFD34 /* SwiftUIViewWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIViewWebView.swift; sourceTree = "<group>"; };
 		4773E7322BAD832F007EFD34 /* StaticFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticFiles.swift; sourceTree = "<group>"; };
 		4773E7392BADA0E6007EFD34 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		4773ECE32BADDD91007EFD34 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
+		4773ECE52BADDF0A007EFD34 /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
+		4773ECEC2BADE923007EFD34 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		4773ECEE2BADEED8007EFD34 /* View+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Additions.swift"; sourceTree = "<group>"; };
+		4773ECF12BADF10C007EFD34 /* DateSwitcherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSwitcherView.swift; sourceTree = "<group>"; };
+		4773ECF42BADF497007EFD34 /* TopTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTabView.swift; sourceTree = "<group>"; };
+		4773ECF62BADFB3E007EFD34 /* BalanceStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceStatusView.swift; sourceTree = "<group>"; };
+		4773ECF82BADFD81007EFD34 /* Double+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
 		4798BAF12BAB581700C9F429 /* TesejournerX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TesejournerX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4798BAF42BAB581700C9F429 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4798BAF62BAB581700C9F429 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +164,8 @@
 		4773E72A2BAD7B90007EFD34 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				4773ECF32BADF48A007EFD34 /* TopTabView */,
+				4773ECF02BADF0F6007EFD34 /* DateSwitcher */,
 				4773E72E2BAD82CF007EFD34 /* WebView */,
 				4773E72B2BAD7BA6007EFD34 /* NextButton */,
 			);
@@ -181,6 +199,7 @@
 		4773E7372BADA0CF007EFD34 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				4773ECE22BADDD40007EFD34 /* TabBar */,
 				4773E7382BADA0D7007EFD34 /* Home */,
 			);
 			path = Main;
@@ -190,8 +209,50 @@
 			isa = PBXGroup;
 			children = (
 				4773E7392BADA0E6007EFD34 /* HomeView.swift */,
+				4773ECF62BADFB3E007EFD34 /* BalanceStatusView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		4773ECE22BADDD40007EFD34 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				4773ECE32BADDD91007EFD34 /* TabBarView.swift */,
+				4773ECE52BADDF0A007EFD34 /* CustomTabBarView.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4773ECEA2BADE901007EFD34 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4773ECEB2BADE916007EFD34 /* AuthViewModel */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		4773ECEB2BADE916007EFD34 /* AuthViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4773ECEC2BADE923007EFD34 /* AuthViewModel.swift */,
+			);
+			path = AuthViewModel;
+			sourceTree = "<group>";
+		};
+		4773ECF02BADF0F6007EFD34 /* DateSwitcher */ = {
+			isa = PBXGroup;
+			children = (
+				4773ECF12BADF10C007EFD34 /* DateSwitcherView.swift */,
+			);
+			path = DateSwitcher;
+			sourceTree = "<group>";
+		};
+		4773ECF32BADF48A007EFD34 /* TopTabView */ = {
+			isa = PBXGroup;
+			children = (
+				4773ECF42BADF497007EFD34 /* TopTabView.swift */,
+			);
+			path = TopTabView;
 			sourceTree = "<group>";
 		};
 		4798BAE82BAB581700C9F429 = {
@@ -215,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				4798BB082BAB596000C9F429 /* App */,
+				4773ECEA2BADE901007EFD34 /* ViewModels */,
 				4798BB0B2BAB601700C9F429 /* Services */,
 				4798BB0D2BAB603800C9F429 /* Helpers */,
 				4798BB0C2BAB602C00C9F429 /* Extensions */,
@@ -248,6 +310,8 @@
 		4798BB0C2BAB602C00C9F429 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				4773ECEE2BADEED8007EFD34 /* View+Additions.swift */,
+				4773ECF82BADFD81007EFD34 /* Double+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -400,17 +464,25 @@
 			files = (
 				4773E7302BAD82CF007EFD34 /* SwiftUIViewWebView.swift in Sources */,
 				472B491E2BAC89F80048355A /* Colors.generated.swift in Sources */,
+				4773ECF52BADF497007EFD34 /* TopTabView.swift in Sources */,
+				4773ECE42BADDD91007EFD34 /* TabBarView.swift in Sources */,
 				4798BAF92BAB581700C9F429 /* ViewController.swift in Sources */,
+				4773ECE62BADDF0A007EFD34 /* CustomTabBarView.swift in Sources */,
+				4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */,
 				4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
 				4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */,
 				472B49202BAC8A080048355A /* Images.generated.swift in Sources */,
+				4773ECF92BADFD81007EFD34 /* Double+Additions.swift in Sources */,
 				4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */,
 				472B49152BAC89400048355A /* Strings.generated.swift in Sources */,
 				4773E7332BAD832F007EFD34 /* StaticFiles.swift in Sources */,
 				4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */,
+				4773ECF22BADF10C007EFD34 /* DateSwitcherView.swift in Sources */,
+				4773ECEF2BADEED8007EFD34 /* View+Additions.swift in Sources */,
 				4773E72D2BAD7BB2007EFD34 /* NextButtonView.swift in Sources */,
+				4773ECF72BADFB3E007EFD34 /* BalanceStatusView.swift in Sources */,
 				4798BAF72BAB581700C9F429 /* SceneDelegate.swift in Sources */,
 				472B49222BAC8A140048355A /* Fonts.generated.swift in Sources */,
 			);

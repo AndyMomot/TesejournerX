@@ -10,9 +10,10 @@ import SwiftUI
 struct AgreementsView: View {
     private var bounts = UIScreen.main.bounds
     
+    @EnvironmentObject private var viewModel: AuthViewModel
+    
     @State private var onNextTapped = false
     @State private var isAgreed = false
-    @State private var showNext = false
     @State private var checkBoxColor = Color.black
     
     var body: some View {
@@ -108,8 +109,8 @@ struct AgreementsView: View {
             onNextTapped = false
         }
         .onChange(of: onNextTapped, perform: { newValue in
-            if isAgreed {
-                showNext = onNextTapped
+            if newValue && isAgreed {
+                viewModel.signIn()
             } else {
                 highliteCheckBox()
             }
@@ -118,12 +119,6 @@ struct AgreementsView: View {
             onNextTapped = false
         })
         
-        .navigationDestination(
-            isPresented: $showNext) {
-                HomeView()
-                Text("")
-                    .hidden()
-            }
         .navigationBarBackButtonHidden()
     }
 }
@@ -134,6 +129,7 @@ private extension AgreementsView {
             checkBoxColor = isAgreed ? Color.black : Color.red
             if !isAgreed {
                 triggerVibration(style: .soft)
+                onNextTapped = false
             }
         }
     }

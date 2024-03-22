@@ -10,9 +10,7 @@ import SwiftUI
 struct LoadingView: View {
     @State private var progress: CGFloat = 0.0
     @State private var progressColors: [Color] = []
-    @State private var showNext = false
-    
-    private var isFirstLaunching = false
+    @Binding var onDidLoad: Bool
     
     private var percent: Int {
         return Int(progress * 100)
@@ -85,16 +83,14 @@ struct LoadingView: View {
                         startTimer()
                     }
                     .onChange(of: progress) { newValue in
-                        showNext = newValue >= 1
+                        if newValue >= 1 {
+                            withAnimation {
+                                onDidLoad = true
+                            }
+                        }
                     }
                 }
             }
-            .navigationDestination(
-                isPresented: $showNext) {
-                    AgreementsView()
-                    Text("")
-                        .hidden()
-                }
         }
     }
 }
@@ -135,7 +131,7 @@ private extension LoadingView {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-        LoadingView()
+        LoadingView(onDidLoad: .constant(false))
             .previewLayout(.sizeThatFits)
     }
 }

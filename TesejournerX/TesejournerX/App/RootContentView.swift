@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct RootContentView: View {
+    @StateObject private var viewModel = AuthViewModel()
+    @State private var didShowLoading = false
+    
     var body: some View {
-        LoadingView()
+        Group {
+            if didShowLoading {
+                if viewModel.userID != nil {
+                    TabBarView()
+                        .environmentObject(viewModel)
+                } else {
+                    AgreementsView()
+                        .environmentObject(viewModel)
+                }
+            } else {
+                LoadingView(onDidLoad: $didShowLoading)
+            }
+        }
     }
 }
 

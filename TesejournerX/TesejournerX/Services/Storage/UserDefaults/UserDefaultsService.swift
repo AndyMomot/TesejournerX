@@ -23,6 +23,20 @@ extension UserDefaultsService {
     }
 }
 
-private enum Keys: String {
-    case userId
+extension UserDefaultsService {
+    static func removeObject(for key: Keys) {
+        standard.removeObject(forKey: key.rawValue)
+    }
+    
+    static func removeAll() {
+        if let bundleIdentifier = Bundle.main.bundleIdentifier {
+            standard.removePersistentDomain(forName: bundleIdentifier)
+        }
+    }
+}
+
+extension UserDefaultsService {
+    enum Keys: String {
+        case userId
+    }
 }
