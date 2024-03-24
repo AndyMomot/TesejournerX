@@ -47,10 +47,12 @@ struct AgreementsView: View {
                     .padding(.horizontal, 26)
                     
                     VStack(spacing: 30) {
-                        NextButtonView(text: "Kontynuuj",
-                                       state: .filled,
-                                       onTapped: $onNextTapped)
-                        .frame(height: bounts.height * 0.055)
+                        NextButtonView(
+                            text: "Kontynuuj",
+                            state: .filled) {
+                                onNextTapped = true
+                            }
+                            .frame(height: bounts.height * 0.055)
                         
                         HStack(spacing: 10) {
                             VStack {

@@ -12,6 +12,9 @@ struct HomeView: View {
     @EnvironmentObject private var viewModel: AuthViewModel
     @State private var counter = 2024
     @State private var topTabBarSelectedIndex = 0
+    
+    @State var onPlusTapped = false
+
     private var topTabBarItems = ["Dni", "Kalendarz", "Miesiąc", "Szczegóły"]
     private var balanceInfoData: [BalanceStatusView.StatusModel] = [
         .init(name: "Dochód", value: 2500),
@@ -48,12 +51,31 @@ struct HomeView: View {
                                 BalanceStatusView(data: balanceInfoData)
                             }
                         
-                            
                             Spacer()
                         }
                     }
                 }
-    
+                
+                VStack {
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        OrangePlusButtoView {
+                            onPlusTapped.toggle()
+                        }
+                        .frame(width: bounts.width * 0.14)
+                        .padding(.trailing, 27)
+                        .padding(.bottom, 20)
+                        .navigationDestination(
+                            isPresented: $onPlusTapped) {
+                                AddBudgetItemView()
+                                Text("")
+                                    .hidden()
+                            }
+                        
+                    }
+                }
             }
             .navigationBarTitle("Główny", displayMode: .inline)
             .navigationBarItems(

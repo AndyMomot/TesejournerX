@@ -11,14 +11,13 @@ struct NextButtonView: View {
     var text: String
     var state: ViewState
     var font = Fonts.LexendDeca.bold.swiftUIFont(size: 16)
-    
-    @Binding var onTapped: Bool
     @State var cornerRadius: CGFloat = 12
+    var onTapped: () -> Void
     
     
     var body: some View {
         Button {
-            onTapped = true
+            onTapped()
         } label: {
             switch state {
             case .filled:
@@ -64,8 +63,7 @@ extension NextButtonView {
 struct NextButtonView_Previews: PreviewProvider {
     static var previews: some View {
         NextButtonView(text: "Kontynuuj ",
-                       state: .bordered,
-                       onTapped: .constant(false))
+                       state: .bordered) {}
         .previewLayout(.fixed(width: 370, height: 52))
     }
 }

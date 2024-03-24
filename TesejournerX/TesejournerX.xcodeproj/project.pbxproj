@@ -16,6 +16,11 @@
 		472B49202BAC8A080048355A /* Images.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B491F2BAC8A080048355A /* Images.generated.swift */; };
 		472B49222BAC8A140048355A /* Fonts.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B49212BAC8A140048355A /* Fonts.generated.swift */; };
 		472B492E2BAC99A30048355A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B492D2BAC99A30048355A /* LoadingView.swift */; };
+		475C506A2BB08D6800618F2C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50692BB08D6800618F2C /* User.swift */; };
+		475C50722BB09B3C00618F2C /* AddBudgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50712BB09B3C00618F2C /* AddBudgetItemView.swift */; };
+		475C50772BB0A40700618F2C /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50762BB0A40700618F2C /* InputView.swift */; };
+		475C507A2BB0A4AB00618F2C /* OrangePlusButtoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50792BB0A4AB00618F2C /* OrangePlusButtoView.swift */; };
+		475C507D2BB0A84F00618F2C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C507C2BB0A84F00618F2C /* Category.swift */; };
 		4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E7282BAD797B007EFD34 /* AgreementsView.swift */; };
 		4773E72D2BAD7BB2007EFD34 /* NextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E72C2BAD7BB2007EFD34 /* NextButtonView.swift */; };
 		4773E7302BAD82CF007EFD34 /* SwiftUIViewWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E72F2BAD82CF007EFD34 /* SwiftUIViewWebView.swift */; };
@@ -60,6 +65,11 @@
 		472B492A2BAC995A0048355A /* LexendDeca-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-ExtraLight.ttf"; sourceTree = "<group>"; };
 		472B492B2BAC995A0048355A /* LexendDeca-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Black.ttf"; sourceTree = "<group>"; };
 		472B492D2BAC99A30048355A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		475C50692BB08D6800618F2C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		475C50712BB09B3C00618F2C /* AddBudgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetItemView.swift; sourceTree = "<group>"; };
+		475C50762BB0A40700618F2C /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
+		475C50792BB0A4AB00618F2C /* OrangePlusButtoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangePlusButtoView.swift; sourceTree = "<group>"; };
+		475C507C2BB0A84F00618F2C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		4773E7282BAD797B007EFD34 /* AgreementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementsView.swift; sourceTree = "<group>"; };
 		4773E72C2BAD7BB2007EFD34 /* NextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonView.swift; sourceTree = "<group>"; };
 		4773E72F2BAD82CF007EFD34 /* SwiftUIViewWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIViewWebView.swift; sourceTree = "<group>"; };
@@ -153,6 +163,63 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
+		475C50672BB08D4B00618F2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				475C507B2BB0A83C00618F2C /* Category */,
+				475C50682BB08D5000618F2C /* UserModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		475C50682BB08D5000618F2C /* UserModel */ = {
+			isa = PBXGroup;
+			children = (
+				475C50692BB08D6800618F2C /* User.swift */,
+			);
+			path = UserModel;
+			sourceTree = "<group>";
+		};
+		475C506F2BB09B1A00618F2C /* BalanceStatus */ = {
+			isa = PBXGroup;
+			children = (
+				4773ECF62BADFB3E007EFD34 /* BalanceStatusView.swift */,
+			);
+			path = BalanceStatus;
+			sourceTree = "<group>";
+		};
+		475C50702BB09B2000618F2C /* AddBudgetItem */ = {
+			isa = PBXGroup;
+			children = (
+				475C50712BB09B3C00618F2C /* AddBudgetItemView.swift */,
+			);
+			path = AddBudgetItem;
+			sourceTree = "<group>";
+		};
+		475C50732BB0A3F200618F2C /* InputView */ = {
+			isa = PBXGroup;
+			children = (
+				475C50762BB0A40700618F2C /* InputView.swift */,
+			);
+			path = InputView;
+			sourceTree = "<group>";
+		};
+		475C50782BB0A4A200618F2C /* OrangePlusButto */ = {
+			isa = PBXGroup;
+			children = (
+				475C50792BB0A4AB00618F2C /* OrangePlusButtoView.swift */,
+			);
+			path = OrangePlusButto;
+			sourceTree = "<group>";
+		};
+		475C507B2BB0A83C00618F2C /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				475C507C2BB0A84F00618F2C /* Category.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		4773E7272BAD7959007EFD34 /* Agreements */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +231,8 @@
 		4773E72A2BAD7B90007EFD34 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				475C50782BB0A4A200618F2C /* OrangePlusButto */,
+				475C50732BB0A3F200618F2C /* InputView */,
 				4773ECF32BADF48A007EFD34 /* TopTabView */,
 				4773ECF02BADF0F6007EFD34 /* DateSwitcher */,
 				4773E72E2BAD82CF007EFD34 /* WebView */,
@@ -209,7 +278,8 @@
 			isa = PBXGroup;
 			children = (
 				4773E7392BADA0E6007EFD34 /* HomeView.swift */,
-				4773ECF62BADFB3E007EFD34 /* BalanceStatusView.swift */,
+				475C506F2BB09B1A00618F2C /* BalanceStatus */,
+				475C50702BB09B2000618F2C /* AddBudgetItem */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -275,6 +345,7 @@
 		4798BAF32BAB581700C9F429 /* TesejournerX */ = {
 			isa = PBXGroup;
 			children = (
+				475C50672BB08D4B00618F2C /* Models */,
 				4798BB082BAB596000C9F429 /* App */,
 				4773ECEA2BADE901007EFD34 /* ViewModels */,
 				4798BB0B2BAB601700C9F429 /* Services */,
@@ -472,19 +543,24 @@
 				4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
+				475C507A2BB0A4AB00618F2C /* OrangePlusButtoView.swift in Sources */,
 				4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */,
 				472B49202BAC8A080048355A /* Images.generated.swift in Sources */,
 				4773ECF92BADFD81007EFD34 /* Double+Additions.swift in Sources */,
+				475C50772BB0A40700618F2C /* InputView.swift in Sources */,
 				4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */,
 				472B49152BAC89400048355A /* Strings.generated.swift in Sources */,
 				4773E7332BAD832F007EFD34 /* StaticFiles.swift in Sources */,
 				4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */,
 				4773ECF22BADF10C007EFD34 /* DateSwitcherView.swift in Sources */,
 				4773ECEF2BADEED8007EFD34 /* View+Additions.swift in Sources */,
+				475C50722BB09B3C00618F2C /* AddBudgetItemView.swift in Sources */,
 				4773E72D2BAD7BB2007EFD34 /* NextButtonView.swift in Sources */,
+				475C506A2BB08D6800618F2C /* User.swift in Sources */,
 				4773ECF72BADFB3E007EFD34 /* BalanceStatusView.swift in Sources */,
 				4798BAF72BAB581700C9F429 /* SceneDelegate.swift in Sources */,
 				472B49222BAC8A140048355A /* Fonts.generated.swift in Sources */,
+				475C507D2BB0A84F00618F2C /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
