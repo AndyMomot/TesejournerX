@@ -11,10 +11,12 @@ struct AddBudgetItemView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var topTabBarSelectedIndex = 0
-    @State private var dateText = ""
-    @State private var sumText = ""
+    @State private var dateText = Date().todayString()
+    @State private var sumText = "0.0"
     @State private var categoryText = ""
     @State private var noteText = ""
+    
+    @State private var showDatePicker = false
     
     private var topTabBarItems = ["Dochód", "Koszty"]
     private var bounts = UIScreen.main.bounds
@@ -36,13 +38,23 @@ struct AddBudgetItemView: View {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 50) {
                             VStack(spacing: 15) {
-                                InputView(title: "Date", text: $dateText)
                                 
-                                InputView(title: "Kwota", text: $sumText)
+                                // Date
+                                InputView(title: "Data", text: $dateText) {
+                                    showDatePicker = true
+                                }
+                                .navigationDestination(
+                                    isPresented: $showDatePicker) {
+                                        DatePikerView(dateString: $dateText)
+                                    }
+                        
+                                // Sum
+                                InputView(title: "Kwota", text: $sumText) {}
+                                    .keyboardType(.decimalPad)
                                 
-                                InputView(title: "Kategoria", text: $categoryText)
+                                InputView(title: "Kategoria", text: $categoryText) {}
                                 
-                                InputView(title: "Notatka", text: $noteText)
+                                InputView(title: "Notatka", text: $noteText) {}
                             }
                             
                             VStack(alignment: .center, spacing: 20) {
@@ -89,6 +101,16 @@ struct AddBudgetItemView: View {
         )
         .navigationBarTitleTextColor(.white)
         .navigationBarBackButtonHidden()
+    }
+}
+
+private extension AddBudgetItemView {
+    func textFieldTitle(_ text: String) -> some View {
+        Text(text)
+            .foregroundColor(Colors.middleGray.swiftUIColor)
+            .font(Fonts.LexendDeca.regular.swiftUIFont(size: 16))
+            .multilineTextAlignment(.leading)
+
     }
 }
 

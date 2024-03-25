@@ -21,6 +21,8 @@
 		475C50772BB0A40700618F2C /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50762BB0A40700618F2C /* InputView.swift */; };
 		475C507A2BB0A4AB00618F2C /* OrangePlusButtoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50792BB0A4AB00618F2C /* OrangePlusButtoView.swift */; };
 		475C507D2BB0A84F00618F2C /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C507C2BB0A84F00618F2C /* Category.swift */; };
+		476D1A772BB205B500FE4469 /* DatePikerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D1A762BB205B500FE4469 /* DatePikerView.swift */; };
+		476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476D1A782BB206B600FE4469 /* Date+Additions.swift */; };
 		4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E7282BAD797B007EFD34 /* AgreementsView.swift */; };
 		4773E72D2BAD7BB2007EFD34 /* NextButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E72C2BAD7BB2007EFD34 /* NextButtonView.swift */; };
 		4773E7302BAD82CF007EFD34 /* SwiftUIViewWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4773E72F2BAD82CF007EFD34 /* SwiftUIViewWebView.swift */; };
@@ -70,6 +72,8 @@
 		475C50762BB0A40700618F2C /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		475C50792BB0A4AB00618F2C /* OrangePlusButtoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangePlusButtoView.swift; sourceTree = "<group>"; };
 		475C507C2BB0A84F00618F2C /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		476D1A762BB205B500FE4469 /* DatePikerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePikerView.swift; sourceTree = "<group>"; };
+		476D1A782BB206B600FE4469 /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
 		4773E7282BAD797B007EFD34 /* AgreementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgreementsView.swift; sourceTree = "<group>"; };
 		4773E72C2BAD7BB2007EFD34 /* NextButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextButtonView.swift; sourceTree = "<group>"; };
 		4773E72F2BAD82CF007EFD34 /* SwiftUIViewWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUIViewWebView.swift; sourceTree = "<group>"; };
@@ -220,6 +224,14 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		476D1A752BB205A700FE4469 /* DatePiker */ = {
+			isa = PBXGroup;
+			children = (
+				476D1A762BB205B500FE4469 /* DatePikerView.swift */,
+			);
+			path = DatePiker;
+			sourceTree = "<group>";
+		};
 		4773E7272BAD7959007EFD34 /* Agreements */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +243,7 @@
 		4773E72A2BAD7B90007EFD34 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				476D1A752BB205A700FE4469 /* DatePiker */,
 				475C50782BB0A4A200618F2C /* OrangePlusButto */,
 				475C50732BB0A3F200618F2C /* InputView */,
 				4773ECF32BADF48A007EFD34 /* TopTabView */,
@@ -383,6 +396,7 @@
 			children = (
 				4773ECEE2BADEED8007EFD34 /* View+Additions.swift */,
 				4773ECF82BADFD81007EFD34 /* Double+Additions.swift */,
+				476D1A782BB206B600FE4469 /* Date+Additions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -542,9 +556,11 @@
 				4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */,
 				4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
+				476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
 				475C507A2BB0A4AB00618F2C /* OrangePlusButtoView.swift in Sources */,
 				4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */,
+				476D1A772BB205B500FE4469 /* DatePikerView.swift in Sources */,
 				472B49202BAC8A080048355A /* Images.generated.swift in Sources */,
 				4773ECF92BADFD81007EFD34 /* Double+Additions.swift in Sources */,
 				475C50772BB0A40700618F2C /* InputView.swift in Sources */,

@@ -10,6 +10,7 @@ import SwiftUI
 struct InputView: View {
     var title: String
     @Binding var text: String
+    var onTap: () -> Void
     
     var body: some View {
         HStack {
@@ -23,7 +24,10 @@ struct InputView: View {
                     TextField("", text: $text)
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 16))
-                    .padding(.horizontal, 8)
+                        .padding(.horizontal, 8)
+                        .onTapGesture {
+                            onTap()
+                        }
                     
                     Divider()
                         .frame(height: 1)
@@ -37,6 +41,6 @@ struct InputView: View {
 
 struct InputView_Previews: PreviewProvider {
     static var previews: some View {
-        InputView(title: "Data", text: .constant("123"))
+        InputView(title: "Data", text: .constant("123")) {}
     }
 }

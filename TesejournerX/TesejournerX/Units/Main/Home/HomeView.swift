@@ -73,7 +73,6 @@ struct HomeView: View {
                                 Text("")
                                     .hidden()
                             }
-                        
                     }
                 }
             }
