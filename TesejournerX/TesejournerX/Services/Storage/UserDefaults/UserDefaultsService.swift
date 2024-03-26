@@ -36,7 +36,29 @@ extension UserDefaultsService {
 }
 
 extension UserDefaultsService {
+    static func saveUser(model: User) throws {
+        do {
+            let data = try JSONEncoder().encode(model)
+            standard.set(data, forKey: Keys.user.rawValue)
+        } catch {
+            throw error
+        }
+    }
+    
+    static func getUser() throws -> User {
+        do {
+            let data = standard.object(forKey: Keys.user.rawValue) as? Data ?? Data()
+            let item = try JSONDecoder().decode(User.self, from: data)
+            return item
+        } catch {
+            throw error
+        }
+    }
+}
+
+extension UserDefaultsService {
     enum Keys: String {
         case userId
+        case user
     }
 }

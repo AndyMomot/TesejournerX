@@ -9,22 +9,23 @@ import Foundation
 
 @MainActor
 final class AuthViewModel: ObservableObject {
-    
-    @Published var userID: String?
+    @Published var user: User?
     
     init() {
         Task {
-            userID = UserDefaultsService.userID
+            user = try? UserDefaultsService.getUser()
         }
     }
     
     func signIn() {
-        UserDefaultsService.setUserID()
-        userID = UserDefaultsService.userID
+        let baseUserModel = User()
+        try? UserDefaultsService.saveUser(model: baseUserModel)
+        user = try? UserDefaultsService.getUser()
+        
     }
 
     func signOut() {
-        userID = nil
+        user = nil
         UserDefaultsService.removeAll()
     }
 }

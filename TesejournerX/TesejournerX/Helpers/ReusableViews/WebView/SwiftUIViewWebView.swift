@@ -12,7 +12,12 @@ struct SwiftUIViewWebView: View {
 //    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var url: URL?
     var body: some View {
-        WebView(url: url)
+        ZStack {
+            Color.white
+                .ignoresSafeArea()
+            
+            WebView(url: url)
+        }
     }
 }
 

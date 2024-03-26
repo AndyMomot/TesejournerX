@@ -8,7 +8,14 @@
 import Foundation
 
 struct User: Codable {
+    private var id = UUID().uuidString
     var budget: Budget = .init()
+    var incomeItems: [BudgetItem] = []
+    var costsItems: [BudgetItem] = []
+    
+    private(set) lazy var income = incomeItems.reduce(0) {$0 + $1.sum}
+    private(set) lazy var costs = costsItems.reduce(0) {$0 + $1.sum}
+    private(set) lazy var balance = income - costs
 }
 
 extension User {
@@ -27,5 +34,11 @@ extension User {
         var sum: Double
         var category: Category
         var note: String
+    }
+}
+
+extension User: Equatable {
+    static func == (lhs: User, rhs: User) -> Bool {
+        lhs.id == rhs.id
     }
 }

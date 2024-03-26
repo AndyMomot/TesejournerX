@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Category: Codable {
-    var id: Int
+struct Category: Codable, Equatable {
+    var id: String = UUID().uuidString
     var image: String
     var name: String
 }

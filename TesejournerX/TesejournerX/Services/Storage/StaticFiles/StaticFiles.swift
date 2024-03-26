@@ -11,4 +11,19 @@ enum StaticFiles {
     enum Privacy {
         static let offerta = "https://www.google.com"
     }
+    
+    enum Categories {
+        static let all: [Category] = [
+            jedzenie, szkolenie, joga, siłownia, odzież, zdrowie, inne
+            
+        ]
+        static let jedzenie = Category(image: Asset.foodCategory.name, name: "Jedzenie")
+        static let szkolenie = Category(image: Asset.educationCategory.name, name: "Szkolenie")
+        static let joga = Category(image: Asset.yogaCategory.name, name: "Joga")
+        static let siłownia = Category(image: Asset.sportCategory.name, name: "Siłownia")
+        static let odzież = Category(image: Asset.clothersCategory.name, name: "Odzież")
+        static let zdrowie = Category(image: Asset.healthCatecory.name, name: "Zdrowie")
+        static let inne = Category(image: "", name: "Inne")
+        static let dodaj = Category(image: "", name: "Dodaj")
+    }
 }

@@ -14,12 +14,14 @@ struct HomeView: View {
     @State private var topTabBarSelectedIndex = 0
     
     @State var onPlusTapped = false
+    
+    @State private var user: User?
 
     private var topTabBarItems = ["Dni", "Kalendarz", "Miesiąc", "Szczegóły"]
-    private var balanceInfoData: [BalanceStatusView.StatusModel] = [
-        .init(name: "Dochód", value: 2500),
-        .init(name: "Koszty", value: 600),
-        .init(name: "Łącznie", value: 1900)
+    @State private var balanceInfoData: [BalanceStatusView.StatusModel] = [
+        .init(name: "Dochód", value: .zero),
+        .init(name: "Koszty", value: .zero),
+        .init(name: "Łącznie", value: .zero)
     ]
     
     private var bounts = UIScreen.main.bounds
@@ -67,13 +69,12 @@ struct HomeView: View {
                         .frame(width: bounts.width * 0.14)
                         .padding(.trailing, 27)
                         .padding(.bottom, 20)
-                        .navigationDestination(
-                            isPresented: $onPlusTapped) {
-                                AddBudgetItemView()
-                                Text("")
-                                    .hidden()
-                            }
                     }
+                }
+            }
+            .fullScreenCover(isPresented: $onPlusTapped) {
+                AddBudgetItemView() {
+                    getUserData()
                 }
             }
             .navigationBarTitle("Główny", displayMode: .inline)
@@ -99,7 +100,29 @@ struct HomeView: View {
                         })
                     }
             )
+            .onAppear {
+                getUserData()
+            }
             .navigationBarTitleTextColor(.white)
+        }
+    }
+}
+
+private extension HomeView {
+    func getUserData() {
+        DispatchQueue.main.async {
+            do {
+                var savedUser = try UserDefaultsService.getUser()
+                user = savedUser
+                
+                balanceInfoData = [
+                    .init(name: "Dochód", value: savedUser.income),
+                    .init(name: "Koszty", value: savedUser.costs),
+                    .init(name: "Łącznie", value: savedUser.balance)
+                ]
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 }

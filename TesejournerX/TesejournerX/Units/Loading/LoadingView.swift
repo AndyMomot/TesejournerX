@@ -9,7 +9,12 @@ import SwiftUI
 
 struct LoadingView: View {
     @State private var progress: CGFloat = 0.0
-    @State private var progressColors: [Color] = []
+    @State private var progressColors: [Color] = [
+        Colors.orange.swiftUIColor,
+        Colors.orange.swiftUIColor.opacity(0.7),
+        Colors.orange.swiftUIColor.opacity(0.6),
+        Colors.orange.swiftUIColor.opacity(0.5)
+    ]
     @Binding var onDidLoad: Bool
     
     private var percent: Int {
@@ -96,21 +101,6 @@ struct LoadingView: View {
 }
 
 private extension LoadingView {
-    func makeProgressCollors() {
-        var colors: [Color] = []
-        let progressInt = Int(progress * 10)
-        for index in 0...progressInt {
-            if  index % 2 == 0 {
-                colors.append(Colors.orange.swiftUIColor)
-            } else {
-                colors.append(Colors.orange.swiftUIColor.opacity(0.7))
-            }
-        }
-        withAnimation {
-            progressColors = colors
-        }
-    }
-    
     func startTimer() {
         Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { timer in
             if progress < 1 {
@@ -121,7 +111,6 @@ private extension LoadingView {
                         progress += 0.1
                     }
                 }
-                makeProgressCollors()
             } else if progress >= 1 {
                 timer.invalidate()
             }

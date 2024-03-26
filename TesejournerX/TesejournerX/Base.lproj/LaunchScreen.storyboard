@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dRY-bl-yMo">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -26,23 +26,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="iuD-gu-TJi">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKs-w4-zCU">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="164.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="155"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoObject" translatesAutoresizingMaskIntoConstraints="NO" id="9z6-if-AtS">
-                                        <rect key="frame" x="164" y="181.66666666666666" width="65" height="59"/>
+                                        <rect key="frame" x="164" y="172" width="65" height="59"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ładowanie..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0m-qa-4P3">
-                                        <rect key="frame" x="120.66666666666669" y="257.66666666666669" width="152" height="30"/>
+                                        <rect key="frame" x="120.66666666666669" y="248" width="152" height="30"/>
                                         <fontDescription key="fontDescription" name="LexendDeca-Bold" family="Lexend Deca" pointSize="24"/>
                                         <color key="textColor" name="Orange"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="gKB-Uz-m0p">
-                                        <rect key="frame" x="62.666666666666657" y="304.66666666666669" width="268" height="53.666666666666686"/>
+                                        <rect key="frame" x="62.666666666666657" y="295" width="268" height="53.666666666666686"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progressTrak" translatesAutoresizingMaskIntoConstraints="NO" id="PwK-41-CP3">
                                                 <rect key="frame" x="0.0" y="0.0" width="268" height="22"/>
@@ -56,11 +56,11 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpP-lh-9SX">
-                                        <rect key="frame" x="0.0" y="375.33333333333331" width="393" height="4.3333333333333144"/>
+                                        <rect key="frame" x="0.0" y="365.66666666666669" width="393" height="4.3333333333333144"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yfl-a5-lE3">
-                                        <rect key="frame" x="0.0" y="396.66666666666669" width="393" height="214.00000000000006"/>
+                                        <rect key="frame" x="0.0" y="387" width="393" height="214"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xU0-2c-7Pz">
                                                 <rect key="frame" x="0.0" y="0.0" width="27" height="214"/>
@@ -82,7 +82,7 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O52-y3-dZf">
-                                        <rect key="frame" x="0.0" y="627.66666666666663" width="393" height="131.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="618" width="393" height="97"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -100,10 +100,29 @@
                             <constraint firstItem="iuD-gu-TJi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qHl-fa-Zor"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="kWM-Cl-Vl7"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="979.38931297709917" y="374.64788732394368"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nbm-bE-RnO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dRY-bl-yMo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Ri-UQ-3aK">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="01J-lp-oVM" kind="relationship" relationship="rootViewController" id="4PR-Jp-avr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iso-dR-Fqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
     <resources>

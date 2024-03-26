@@ -14,7 +14,7 @@ struct RootContentView: View {
     var body: some View {
         Group {
             if didShowLoading {
-                if viewModel.userID != nil {
+                if viewModel.user != nil {
                     TabBarView()
                         .environmentObject(viewModel)
                 } else {

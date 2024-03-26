@@ -17,111 +17,112 @@ struct AgreementsView: View {
     @State private var checkBoxColor = Color.black
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
+        NavigationStack {
             ZStack {
                 Color.white
                     .ignoresSafeArea()
-                
-                VStack(spacing: bounts.height * 0.09) {
-                    
-                    Image(Asset.agreenents.name)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: bounts.height * 0.32)
-                        .padding(.top, bounts.height * 0.16)
-                    
-                    VStack(spacing: 10) {
-                        Text("Welcome to TesejournerX")
-                            .foregroundColor(Colors.blue.swiftUIColor)
-                            .font(Fonts.LexendDeca.bold.swiftUIFont(size: 24))
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: bounts.height * 0.09) {
                         
-                        Text("your intuitive financial diary, simplifying money management for you.")
-                            .foregroundColor(.black)
-                            .font(Fonts.LexendDeca.regular.swiftUIFont(size: 16))
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.5)
-                    }
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 26)
-                    
-                    VStack(spacing: 30) {
-                        NextButtonView(
-                            text: "Kontynuuj",
-                            state: .filled) {
-                                onNextTapped = true
-                            }
-                            .frame(height: bounts.height * 0.055)
+                        Image(Asset.agreenents.name)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(height: bounts.height * 0.32)
+                            .padding(.top, bounts.height * 0.16)
                         
-                        HStack(spacing: 10) {
-                            VStack {
-                                ZStack {
-                                    Rectangle()
-                                        .scaledToFit()
-                                        .foregroundColor(.white)
-                                        .frame(width: 21)
-                                        .cornerRadius(4)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 4)
-                                                .stroke(checkBoxColor, lineWidth: 1)
-                                        )
-                                        .onTapGesture {
-                                            isAgreed.toggle()
-                                            highliteCheckBox()
+                        VStack(spacing: 10) {
+                            Text("Welcome to TesejournerX")
+                                .foregroundColor(Colors.blue.swiftUIColor)
+                                .font(Fonts.LexendDeca.bold.swiftUIFont(size: 24))
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                            
+                            Text("your intuitive financial diary, simplifying money management for you.")
+                                .foregroundColor(.black)
+                                .font(Fonts.LexendDeca.regular.swiftUIFont(size: 16))
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                        }
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 26)
+                        
+                        VStack(spacing: 30) {
+                            NextButtonView(
+                                text: "Kontynuuj",
+                                state: .filled) {
+                                    onNextTapped = true
+                                }
+                                .frame(height: bounts.height * 0.055)
+                            
+                            HStack(spacing: 10) {
+                                VStack {
+                                    ZStack {
+                                        Rectangle()
+                                            .scaledToFit()
+                                            .foregroundColor(.white)
+                                            .frame(width: 21)
+                                            .cornerRadius(4)
+                                            .overlay(
+                                                RoundedRectangle(cornerRadius: 4)
+                                                    .stroke(checkBoxColor, lineWidth: 1)
+                                            )
+                                            .onTapGesture {
+                                                isAgreed.toggle()
+                                                highliteCheckBox()
+                                            }
+                                        
+                                        if isAgreed {
+                                            Image(systemName: "checkmark", variableValue: 1.00)
+                                                .symbolRenderingMode(.monochrome)
+                                                .foregroundColor(Colors.orange.swiftUIColor)
+                                                .font(.system(size: 16, weight: .bold))
                                         }
+                                    }
+                                    Spacer()
+                                }
+                                
+                                VStack(alignment: .leading, spacing: 4) {
+                                    Text("Kontynuuj, w pełni akceptuję")
+                                        .foregroundColor(.black)
+                                        .multilineTextAlignment(.leading)
+                                        .font(Fonts.LexendDeca.regular.swiftUIFont(size: 14))
                                     
-                                    if isAgreed {
-                                        Image(systemName: "checkmark", variableValue: 1.00)
-                                            .symbolRenderingMode(.monochrome)
+                                    NavigationLink {
+                                        let url = URL(string: StaticFiles.Privacy.offerta)
+                                        SwiftUIViewWebView(url: url)
+                                    } label: {
+                                        Text("Polityka prywatności i Warunki korzystania z usługi.")
+                                            .underline()
+                                            .multilineTextAlignment(.leading)
                                             .foregroundColor(Colors.orange.swiftUIColor)
-                                            .font(.system(size: 16, weight: .bold))
+                                            .font(Fonts.LexendDeca.bold.swiftUIFont(size: 16))
+                                            .lineLimit(nil)
                                     }
                                 }
+                                
                                 Spacer()
                             }
-                            
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Kontynuuj, w pełni akceptuję")
-                                    .foregroundColor(.black)
-                                    .multilineTextAlignment(.leading)
-                                    .font(Fonts.LexendDeca.regular.swiftUIFont(size: 14))
-                                
-                                NavigationLink {
-                                    let url = URL(string: StaticFiles.Privacy.offerta)
-                                    SwiftUIViewWebView(url: url)
-                                } label: {
-                                    Text("Polityka prywatności i Warunki korzystania z usługi.")
-                                        .underline()
-                                        .multilineTextAlignment(.leading)
-                                        .foregroundColor(Colors.orange.swiftUIColor)
-                                        .font(Fonts.LexendDeca.bold.swiftUIFont(size: 16))
-                                        .lineLimit(nil)
-                                }
-                            }
-                            
-                            Spacer()
                         }
+                        .padding(.horizontal, 26)
                     }
-                    .padding(.horizontal, 26)
                 }
             }
-        }
-        .onDisappear {
-            onNextTapped = false
-        }
-        .onChange(of: onNextTapped, perform: { newValue in
-            if newValue && isAgreed {
-                viewModel.signIn()
-            } else {
-                highliteCheckBox()
+            .onDisappear {
+                onNextTapped = false
             }
-        })
-        .onChange(of: isAgreed, perform: { newValue in
-            onNextTapped = false
-        })
-        
-        .navigationBarBackButtonHidden()
+            .onChange(of: onNextTapped, perform: { newValue in
+                if newValue && isAgreed {
+                    viewModel.signIn()
+                } else {
+                    highliteCheckBox()
+                }
+            })
+            .onChange(of: isAgreed, perform: { newValue in
+                onNextTapped = false
+            })
+            
+            .navigationBarBackButtonHidden()
+        }
     }
 }
 

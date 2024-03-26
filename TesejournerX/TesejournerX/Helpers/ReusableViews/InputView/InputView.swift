@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InputView: View {
     var title: String
+    var placeholder: String = ""
     @Binding var text: String
     var onTap: () -> Void
     
@@ -21,7 +22,7 @@ struct InputView: View {
                     .multilineTextAlignment(.leading)
                 
                 VStack(spacing: 3) {
-                    TextField("", text: $text)
+                    TextField(placeholder, text: $text)
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 16))
                         .padding(.horizontal, 8)
