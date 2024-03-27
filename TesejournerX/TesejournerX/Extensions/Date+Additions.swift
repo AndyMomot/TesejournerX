@@ -13,6 +13,11 @@ extension Date {
         formatter.dateFormat = format.rawValue
         return formatter.string(from: Date())
     }
+    
+    func isToday() -> Bool {
+        let calendar = Calendar.current
+        return calendar.isDateInToday(self)
+    }
 }
 
 extension Date {

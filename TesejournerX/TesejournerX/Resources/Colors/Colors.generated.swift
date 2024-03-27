@@ -24,6 +24,7 @@ internal typealias AssetColorTypeAlias = ColorAsset.Color
 internal enum Colors {
   internal static let blue = ColorAsset(name: "Blue")
   internal static let borderGray = ColorAsset(name: "BorderGray")
+  internal static let divider = ColorAsset(name: "Divider")
   internal static let liteGray = ColorAsset(name: "LiteGray")
   internal static let middleGray = ColorAsset(name: "MiddleGray")
   internal static let orange = ColorAsset(name: "Orange")

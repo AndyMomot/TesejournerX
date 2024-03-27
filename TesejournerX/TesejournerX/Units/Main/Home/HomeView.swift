@@ -14,15 +14,16 @@ struct HomeView: View {
     @State private var topTabBarSelectedIndex = 0
     
     @State var onPlusTapped = false
+    @State private var showDeleteDayItemAlert = false
     
-    @State private var user: User?
-
     private var topTabBarItems = ["Dni", "Kalendarz", "Miesiąc", "Szczegóły"]
     @State private var balanceInfoData: [BalanceStatusView.StatusModel] = [
         .init(name: "Dochód", value: .zero),
         .init(name: "Koszty", value: .zero),
         .init(name: "Łącznie", value: .zero)
     ]
+    @State private var budgetItems: [User.BudgetItem] = []
+    @State private var budgetItem: User.BudgetItem?
     
     private var bounts = UIScreen.main.bounds
     
@@ -51,6 +52,27 @@ struct HomeView: View {
                             VStack(spacing: .zero) {
                                 TopTabView(selectedItem: $topTabBarSelectedIndex, items: topTabBarItems)
                                 BalanceStatusView(data: balanceInfoData)
+                                
+                                switch topTabBarSelectedIndex {
+                                case 0:
+                                    ScrollView(showsIndicators: false) {
+                                        VStack(alignment: .center, spacing: 20) {
+                                            ForEach(budgetItems, id: \.id) { item in
+                                                DayTransactionCell(item: item)
+                                                    .onLongPressGesture(perform: {
+                                                        budgetItem = item
+                                                        showDeleteDayItemAlert = true
+                                                    })
+                                                    .padding(.horizontal, 27)
+                                            }
+                                            
+                                            Spacer()
+                                        }
+                                        .padding(.top, 20)
+                                    }
+                                default:
+                                    EmptyView()
+                                }
                             }
                         
                             Spacer()
@@ -104,6 +126,18 @@ struct HomeView: View {
                 getUserData()
             }
             .navigationBarTitleTextColor(.white)
+            .alert(isPresented: $showDeleteDayItemAlert) {
+                Alert(
+                    title: Text("Alert Title"),
+                    message: Text("This is a message."),
+                    primaryButton: .destructive(Text("OK"), action: {
+                        if let item = budgetItem {
+                            dayTransactionLongPressed(item: item)
+                        }
+                    }),
+                    secondaryButton: .cancel()
+                )
+            }
         }
     }
 }
@@ -113,13 +147,30 @@ private extension HomeView {
         DispatchQueue.main.async {
             do {
                 var savedUser = try UserDefaultsService.getUser()
-                user = savedUser
-                
                 balanceInfoData = [
                     .init(name: "Dochód", value: savedUser.income),
                     .init(name: "Koszty", value: savedUser.costs),
                     .init(name: "Łącznie", value: savedUser.balance)
                 ]
+                
+                budgetItems = savedUser.budgetItems.filter { $0.date.isToday() }
+                
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func dayTransactionLongPressed(item: User.BudgetItem) {
+        DispatchQueue.main.async {
+            do {
+                var user = try UserDefaultsService.getUser()
+                user.budgetItems.removeAll(where: {
+                    $0.id == item.id
+                })
+                try UserDefaultsService.saveUser(model: user)
+                
+                getUserData()
             } catch {
                 print(error.localizedDescription)
             }

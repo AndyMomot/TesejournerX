@@ -171,7 +171,7 @@ private extension AddBudgetItemView {
     func sumTextDidChange(_ text: String) {
         var formattedString = ""
         // Разбиваем строку по точке и получаем массив подстрок
-        var components = text.components(separatedBy: ".")
+        let components = text.components(separatedBy: ".")
         if components.count >= 2 {
             // Берем первую подстроку как целую часть числа
             if let integerPart = Int(components[0]) {
@@ -211,17 +211,14 @@ private extension AddBudgetItemView {
             }) ?? StaticFiles.Categories.inne
             
             let item = User.BudgetItem(
-                date: dateText,
+                type: .init(rawValue: topTabBarSelectedIndex) ?? .cost,
+                date: dateText.toDateWith(format: .ddMMyy) ?? Date(),
                 sum: Double(sumText) ?? .zero,
                 category: category,
                 note: noteText
             )
             
-            if topTabBarSelectedIndex == 0 { // Income
-                newUser.incomeItems.append(item)
-            } else { // Costs
-                newUser.costsItems.append(item)
-            }
+            newUser.budgetItems.append(item)
             
             do {
                 try UserDefaultsService.saveUser(model: newUser)
