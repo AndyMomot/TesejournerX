@@ -10,7 +10,10 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject private var viewModel: AuthViewModel
-    @State private var counter = 2024
+    @ObservedObject var userDataPublisher = UserDataPublisher.shared
+    
+    
+    @State private var currentYear: Int = Date().getCurrent(period: .year)
     @State private var topTabBarSelectedIndex = 0
     
     @State var onPlusTapped = false
@@ -22,8 +25,7 @@ struct HomeView: View {
         .init(name: "Koszty", value: .zero),
         .init(name: "Łącznie", value: .zero)
     ]
-    @State private var budgetItems: [User.BudgetItem] = []
-    @State private var budgetItem: User.BudgetItem?
+    @State private var budgetItems: [UserModel.BudgetItem] = []
     
     private var bounts = UIScreen.main.bounds
     
@@ -41,35 +43,24 @@ struct HomeView: View {
                             .offset(.init(width: .zero, height: -bounts.height * 0.14))
                         
                         VStack(spacing: .zero) {
-                            DateSwitcherView(title: "\(counter)") {
-                                counter -= 1
-                                print(counter)
+                            DateSwitcherView(title: "\(currentYear)") {
+                                currentYear -= 1
+                                print(currentYear)
                             } onRight: {
-                                counter += 1
-                                print(counter)
+                                currentYear += 1
+                                print(currentYear)
                             }
 
                             VStack(spacing: .zero) {
                                 TopTabView(selectedItem: $topTabBarSelectedIndex, items: topTabBarItems)
+                                
                                 BalanceStatusView(data: balanceInfoData)
                                 
                                 switch topTabBarSelectedIndex {
                                 case 0:
-                                    ScrollView(showsIndicators: false) {
-                                        VStack(alignment: .center, spacing: 20) {
-                                            ForEach(budgetItems, id: \.id) { item in
-                                                DayTransactionCell(item: item)
-                                                    .onLongPressGesture(perform: {
-                                                        budgetItem = item
-                                                        showDeleteDayItemAlert = true
-                                                    })
-                                                    .padding(.horizontal, 27)
-                                            }
-                                            
-                                            Spacer()
-                                        }
-                                        .padding(.top, 20)
-                                    }
+                                    ListOfFinancesForTodayView(items: budgetItems)
+                                case 2:
+                                    ListOfFinancesForMonthView(items: budgetItems)
                                 default:
                                     EmptyView()
                                 }
@@ -82,7 +73,6 @@ struct HomeView: View {
                 
                 VStack {
                     Spacer()
-                    
                     HStack {
                         Spacer()
                         OrangePlusButtoView {
@@ -94,10 +84,11 @@ struct HomeView: View {
                     }
                 }
             }
+            .onReceive(userDataPublisher.objectDidChange) { _ in
+                getUserData()
+            }
             .fullScreenCover(isPresented: $onPlusTapped) {
-                AddBudgetItemView() {
-                    getUserData()
-                }
+                AddBudgetItemView()
             }
             .navigationBarTitle("Główny", displayMode: .inline)
             .navigationBarItems(
@@ -126,18 +117,6 @@ struct HomeView: View {
                 getUserData()
             }
             .navigationBarTitleTextColor(.white)
-            .alert(isPresented: $showDeleteDayItemAlert) {
-                Alert(
-                    title: Text("Alert Title"),
-                    message: Text("This is a message."),
-                    primaryButton: .destructive(Text("OK"), action: {
-                        if let item = budgetItem {
-                            dayTransactionLongPressed(item: item)
-                        }
-                    }),
-                    secondaryButton: .cancel()
-                )
-            }
         }
     }
 }
@@ -153,24 +132,8 @@ private extension HomeView {
                     .init(name: "Łącznie", value: savedUser.balance)
                 ]
                 
-                budgetItems = savedUser.budgetItems.filter { $0.date.isToday() }
+                budgetItems = savedUser.budgetItems
                 
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func dayTransactionLongPressed(item: User.BudgetItem) {
-        DispatchQueue.main.async {
-            do {
-                var user = try UserDefaultsService.getUser()
-                user.budgetItems.removeAll(where: {
-                    $0.id == item.id
-                })
-                try UserDefaultsService.saveUser(model: user)
-                
-                getUserData()
             } catch {
                 print(error.localizedDescription)
             }

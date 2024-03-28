@@ -8,12 +8,6 @@
 import SwiftUI
 
 struct AddBudgetItemView: View {
-    var onDismiss: () -> Void
-    
-    init(onDismiss: @escaping () -> Void) {
-        self.onDismiss = onDismiss
-    }
-    
     @Environment(\.presentationMode) var presentationMode
     
     @State private var topTabBarSelectedIndex = 0
@@ -61,7 +55,7 @@ struct AddBudgetItemView: View {
                                     }
                                     
                                     // Sum
-                                    InputView(title: "Kwota", placeholder: "0.0", text: $sumText) {}
+                                    InputView(title: "Kwota", placeholder: "0", text: $sumText) {}
                                         .keyboardType(.numberPad)
                                     
                                     
@@ -127,7 +121,6 @@ struct AddBudgetItemView: View {
             .navigationBarItems(
                 leading:
                     Button(action: {
-                        onDismiss()
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(Asset.leftArrow.name)
@@ -174,7 +167,6 @@ private extension AddBudgetItemView {
     
     func onSaveAndReturn() {
         if saveItem() {
-            onDismiss()
             self.presentationMode.wrappedValue.dismiss()
         }
     }
@@ -193,11 +185,11 @@ private extension AddBudgetItemView {
             guard let savedUser = getUserData() else { return false }
             var newUser = savedUser
             
-            let category = StaticFiles.Categories.all.first(where: {
+            let category = getAllCategories().first(where: {
                 $0.name == categoryText
             }) ?? StaticFiles.Categories.inne
             
-            let item = User.BudgetItem(
+            let item = UserModel.BudgetItem(
                 isFavorite: self.isFavorite,
                 type: .init(rawValue: topTabBarSelectedIndex) ?? .cost,
                 date: dateText.toDateWith(format: .ddMMyy) ?? Date(),
@@ -247,7 +239,7 @@ private extension AddBudgetItemView {
         generator.impactOccurred()
     }
     
-    func getUserData() -> User? {
+    func getUserData() -> UserModel? {
         return try? UserDefaultsService.getUser()
     }
     
@@ -260,7 +252,7 @@ private extension AddBudgetItemView {
 struct AddBudgetItemView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AddBudgetItemView() {}
+            AddBudgetItemView()
         }
     }
 }

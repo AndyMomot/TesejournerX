@@ -9,7 +9,7 @@ import Foundation
 
 @MainActor
 final class AuthViewModel: ObservableObject {
-    @Published var user: User?
+    @Published var user: UserModel?
     
     init() {
         Task {
@@ -18,7 +18,7 @@ final class AuthViewModel: ObservableObject {
     }
     
     func signIn() {
-        let baseUserModel = User()
+        let baseUserModel = UserModel()
         try? UserDefaultsService.saveUser(model: baseUserModel)
         user = try? UserDefaultsService.getUser()
         

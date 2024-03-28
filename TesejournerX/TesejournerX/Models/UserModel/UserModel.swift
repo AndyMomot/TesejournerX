@@ -5,10 +5,23 @@
 //  Created by Andrii Momot on 24.03.2024.
 //
 
-import Foundation
+import SwiftUI
+import Combine
 
-struct User: Codable {
-    private var id = UUID().uuidString
+final class UserDataPublisher: ObservableObject {
+    static let shared = UserDataPublisher()
+    
+    private init() {}
+    
+    let objectDidChange = PassthroughSubject<Void, Never>()
+    
+    func notifyChanges() {
+        objectDidChange.send()
+    }
+}
+
+struct UserModel: Codable {
+    private(set) var id = 1
     var budget: Budget = .init()
     var budgetItems: [BudgetItem] = []
     
@@ -17,7 +30,7 @@ struct User: Codable {
     private(set) lazy var balance = income - costs
 }
 
-extension User {
+extension UserModel {
     struct Budget: Codable {
         var income: Double = .zero
         var costs: Double = .zero
@@ -27,7 +40,7 @@ extension User {
     }
 }
 
-extension User {
+extension UserModel {
     struct BudgetItem: Codable {
         var id = UUID().uuidString
         var isFavorite: Bool
@@ -53,8 +66,8 @@ extension User {
     }
 }
 
-extension User: Equatable {
-    static func == (lhs: User, rhs: User) -> Bool {
+extension UserModel: Equatable {
+    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
         lhs.id == rhs.id
     }
 }

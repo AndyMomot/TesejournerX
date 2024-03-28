@@ -5,7 +5,7 @@
 //  Created by Andrii Momot on 20.03.2024.
 //
 
-import Foundation
+import SwiftUI
 
 struct UserDefaultsService {
     private static let standard = UserDefaults.standard
@@ -26,19 +26,20 @@ extension UserDefaultsService {
 
 // User
 extension UserDefaultsService {
-    static func saveUser(model: User) throws {
+    static func saveUser(model: UserModel) throws {
         do {
             let data = try JSONEncoder().encode(model)
             standard.set(data, forKey: Keys.user.rawValue)
+            UserDataPublisher.shared.notifyChanges()
         } catch {
             throw error
         }
     }
     
-    static func getUser() throws -> User {
+    static func getUser() throws -> UserModel {
         do {
             let data = standard.object(forKey: Keys.user.rawValue) as? Data ?? Data()
-            let item = try JSONDecoder().decode(User.self, from: data)
+            let item = try JSONDecoder().decode(UserModel.self, from: data)
             return item
         } catch {
             throw error
@@ -79,7 +80,7 @@ extension UserDefaultsService {
 
 // Keys
 extension UserDefaultsService {
-    enum Keys: String {
+    enum Keys: String, CaseIterable {
         case user
         case categories
     }

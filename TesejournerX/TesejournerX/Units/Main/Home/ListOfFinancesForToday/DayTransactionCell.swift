@@ -8,22 +8,25 @@
 import SwiftUI
 
 struct DayTransactionCell: View {
-    var item: User.BudgetItem
+    var item: UserModel.BudgetItem
     
     var body: some View {
         VStack {
             HStack(alignment: .center, spacing: 15) {
                 HStack(alignment: .center, spacing: 5) {
-                    Image(item.category.image)
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 24, height: 24)
-                        .cornerRadius(12)
+                    if let image = UIImage(named: item.category.image) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 24, height: 24)
+                            .cornerRadius(12)
+                    }
                     
                     Text(item.category.name)
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 12))
                 }
+                .padding(.leading, 13)
                 
                 Divider()
                     .background(Colors.divider.swiftUIColor)
@@ -42,14 +45,16 @@ struct DayTransactionCell: View {
                 .font(Fonts.LexendDeca.regular.swiftUIFont(size: 14))
                 .multilineTextAlignment(.leading)
                 
-                Spacer()
+                Spacer(minLength: .zero)
                 
                 Text("Zł " + item.sum.string())
-                    .foregroundColor(Colors.orange.swiftUIColor)
+                    .foregroundColor(
+                        item.type == .cost ? Colors.orange.swiftUIColor : Colors.blue.swiftUIColor
+                    )
                     .font(Fonts.LexendDeca.bold.swiftUIFont(size: 14))
                     .multilineTextAlignment(.center)
+                    .padding(.trailing, 13)
             }
-            .padding(.horizontal, 13)
         }
         .background(Color.white)
         .cornerRadius(10)

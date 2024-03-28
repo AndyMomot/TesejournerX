@@ -18,6 +18,11 @@ extension Date {
         let calendar = Calendar.current
         return calendar.isDateInToday(self)
     }
+    
+    func getCurrent(period component: Calendar.Component) -> Int {
+        let calendar = Calendar.current
+        return calendar.component(component, from: Date())
+    }
 }
 
 extension Date {

@@ -21,8 +21,8 @@ struct CategoryCell: View {
             HStack(alignment: .center, spacing: 15) {
                 Spacer(minLength: 0)
                 
-                if !category.image.isEmpty {
-                    Image(category.image)
+                if let image = UIImage(named: category.image) {
+                    Image(uiImage: image)
                         .resizable()
                         .scaledToFill()
                         .frame(width: 28, height: 28)
