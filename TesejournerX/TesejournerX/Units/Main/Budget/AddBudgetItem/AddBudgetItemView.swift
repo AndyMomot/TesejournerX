@@ -17,6 +17,7 @@ struct AddBudgetItemView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State private var topTabBarSelectedIndex = 0
+    @State private var isFavorite = false
     @State private var dateText = Date().todayString()
     @State private var sumText = ""
     @State private var categoryText = ""
@@ -80,7 +81,7 @@ struct AddBudgetItemView: View {
                                     }
                                     .frame(height: 52)
                                     
-                                    NextButtonView(text: "Zapisz", state: .bordered) {
+                                    NextButtonView(text: "Następny", state: .bordered) {
                                         onSaveAndCleanFields()
                                     }
                                     .frame(height: 52)
@@ -122,9 +123,6 @@ struct AddBudgetItemView: View {
                     showCategories = false
                 }
             }
-            .onChange(of: sumText) { newValue in
-                sumTextDidChange(newValue)
-            }
             .navigationBarTitle(topTabBarItems[topTabBarSelectedIndex], displayMode: .inline)
             .navigationBarItems(
                 leading:
@@ -137,9 +135,15 @@ struct AddBudgetItemView: View {
                 ,
                 trailing:
                     Button(action: {
-                        
+                        isFavorite.toggle()
                     }, label: {
-                        Image(Asset.star.name)
+                        if isFavorite {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.white)
+                        } else {
+                            Image(systemName: "star")
+                                .foregroundColor(.white)
+                        }
                     })
             )
             .navigationBarTitleTextColor(.white)
@@ -165,23 +169,6 @@ private extension AddBudgetItemView {
                 for: nil)
             
             dropPointInSumIfItLastChar()
-        }
-    }
-    
-    func sumTextDidChange(_ text: String) {
-        var formattedString = ""
-        // Разбиваем строку по точке и получаем массив подстрок
-        let components = text.components(separatedBy: ".")
-        if components.count >= 2 {
-            // Берем первую подстроку как целую часть числа
-            if let integerPart = Int(components[0]) {
-                // Берем вторую подстроку и обрезаем ее до двух символов
-                let decimalPart = components[1].prefix(2)
-                // Формируем строку с округленной десятичной частью
-                formattedString = "\(integerPart).\(decimalPart)"
-            }
-            
-            sumText = formattedString
         }
     }
     
@@ -211,6 +198,7 @@ private extension AddBudgetItemView {
             }) ?? StaticFiles.Categories.inne
             
             let item = User.BudgetItem(
+                isFavorite: self.isFavorite,
                 type: .init(rawValue: topTabBarSelectedIndex) ?? .cost,
                 date: dateText.toDateWith(format: .ddMMyy) ?? Date(),
                 sum: Double(sumText) ?? .zero,
@@ -238,9 +226,14 @@ private extension AddBudgetItemView {
         let isValidDate = dateText.toDateWith(format: .ddMMyy) != nil
         dropPointInSumIfItLastChar()
         let isValidSum = Double(sumText) != nil
-        let isValidCategory = !categoryText.isEmpty
+        var isValidCategory = !categoryText.isEmpty
+        if !getAllCategories().contains(where: {$0.name == categoryText}) {
+            isValidCategory = false
+            categoryText = ""
+        }
+        let isValidNote = !noteText.isEmpty
 
-        return isValidDate && isValidSum && isValidCategory
+        return isValidDate && isValidSum && isValidCategory && isValidNote
     }
     
     func dropPointInSumIfItLastChar() {
@@ -256,6 +249,11 @@ private extension AddBudgetItemView {
     
     func getUserData() -> User? {
         return try? UserDefaultsService.getUser()
+    }
+    
+    func getAllCategories() -> [Category]  {
+        let personalItems = UserDefaultsService.getPersonalCategories()
+        return StaticFiles.Categories.all + personalItems
     }
 }
 

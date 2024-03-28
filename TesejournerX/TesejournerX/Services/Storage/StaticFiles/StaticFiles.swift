@@ -14,7 +14,7 @@ enum StaticFiles {
     
     enum Categories {
         static let all: [Category] = [
-            jedzenie, szkolenie, joga, siłownia, odzież, zdrowie, inne
+            jedzenie, szkolenie, joga, siłownia, odzież, zdrowie, inne, dodaj
         ]
         static let jedzenie = Category(image: Asset.foodCategory.name, name: "Jedzenie")
         static let szkolenie = Category(image: Asset.educationCategory.name, name: "Szkolenie")

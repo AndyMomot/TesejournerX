@@ -11,4 +11,5 @@ struct Category: Codable, Equatable {
     var id: String = UUID().uuidString
     var image: String
     var name: String
+    var isPersonal = false
 }

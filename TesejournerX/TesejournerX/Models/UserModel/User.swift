@@ -30,6 +30,7 @@ extension User {
 extension User {
     struct BudgetItem: Codable {
         var id = UUID().uuidString
+        var isFavorite: Bool
         var type: ItemType
         var date: Date
         var sum: Double

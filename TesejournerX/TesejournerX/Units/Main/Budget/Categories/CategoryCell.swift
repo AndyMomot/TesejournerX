@@ -9,11 +9,14 @@ import SwiftUI
 
 struct CategoryCell: View {
     var category: Category
-    @Binding var selectedCategory: Category?
+    var onSelect: (Category) -> Void
+    var onDelete: () -> Void
+    
+    @State private var showDeleteItemAlert = false
     
     var body: some View {
         Button {
-            selectedCategory = category
+            onSelect(category)
         } label: {
             HStack(alignment: .center, spacing: 15) {
                 Spacer(minLength: 0)
@@ -34,9 +37,41 @@ struct CategoryCell: View {
                     .padding(.vertical, 18)
                 
                 Spacer(minLength: 0)
+                
+                if category.isPersonal {
+                    Button {
+                        showDeleteItemAlert.toggle()
+                    } label: {
+                        Image(systemName: "xmark")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 12)
+                            .foregroundColor(.black)
+                            .padding(.trailing, 5)
+                    }
+                }
             }
             .background(Color.white)
             .cornerRadius(10)
+        }
+        .alert("Usuwanie kategorii", isPresented: $showDeleteItemAlert) {
+            Button("Usuwać", role: .destructive) {
+                deleteCategory()
+            }
+            Button("Anulować", role: .cancel) { }
+        } message: {
+            Text("Czy na pewno chcesz usunąć kategorię?")
+        }
+    }
+}
+
+private extension CategoryCell {
+    func deleteCategory() {
+        do {
+            try UserDefaultsService.deletePersonalCategory(category)
+            onDelete()
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
@@ -44,8 +79,11 @@ struct CategoryCell: View {
 struct CategoryCell_Previews: PreviewProvider {
     static var previews: some View {
         
-        CategoryCell(category: StaticFiles.Categories.all.first!,
-                     selectedCategory: .constant(.init(image: "", name: "")))
+        CategoryCell(category: StaticFiles.Categories.all.first!, onSelect: { _ in
+            
+        }, onDelete: {
+            
+        })
             .previewLayout(.sizeThatFits)
             .padding()
     }

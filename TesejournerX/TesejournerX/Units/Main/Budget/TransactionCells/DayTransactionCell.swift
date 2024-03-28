@@ -60,6 +60,7 @@ struct DayTransactionCell: View {
 struct DayTransactionCell_Previews: PreviewProvider {
     static var previews: some View {
         DayTransactionCell(item: .init(
+            isFavorite: false,
             type: .income,
             date: Date(),
             sum: 100,
