@@ -17,11 +17,11 @@ struct MonthTransactionCell: View {
         VStack {
             HStack(alignment: .center, spacing: 15) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("Luty")
+                    Text(items.first?.date.toString(format: .month) ?? "")
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 12))
                     
-                    Text("01.02 - 28.02")
+                    Text(items.first?.date.getStartEndDaysOfMonts() ?? "")
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 12))
                 }

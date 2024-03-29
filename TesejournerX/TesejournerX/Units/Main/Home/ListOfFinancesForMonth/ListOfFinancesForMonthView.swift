@@ -8,24 +8,41 @@
 import SwiftUI
 
 struct ListOfFinancesForMonthView: View {
-    @State var items: [UserModel.BudgetItem]
+    var items: [UserModel.BudgetItem]
+    
+    init(items: [UserModel.BudgetItem]) {
+        self.items = items
+    }
+    
+    @ObservedObject var userDataPublisher = UserDataPublisher.shared
     @State private var itemsGroupedByMonth: [[UserModel.BudgetItem]] = []
     
     var body: some View {
         List {
-            ForEach(Array(itemsGroupedByMonth.enumerated()), id: \.offset) { index, items in
-                Section {
-                    MonthTransactionCell(items: items)
+            if items.isEmpty {
+                Text("")
+                    .foregroundColor(.clear)
+                    .frame(height: 0)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
+            } else {
+                ForEach(Array(itemsGroupedByMonth.enumerated()), id: \.offset) { index, items in
+                    Section {
+                        MonthTransactionCell(items: items)
+                    }
                 }
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets())
             }
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets())
-            
         }
         .scrollContentBackground(.hidden)
         .onAppear {
             viewDidAppear()
+        }
+        .onReceive(userDataPublisher.objectDidChange) { _ in
+            getUserData()
         }
     }
 }
@@ -39,15 +56,20 @@ private extension ListOfFinancesForMonthView {
     
     func groupItems(with items: [UserModel.BudgetItem]) -> [[UserModel.BudgetItem]] {
         // Создание словаря, в котором ключи - это год и месяц, а значения - это массив элементов с этими годом и месяцем
-        let groupedData = Dictionary(grouping: items) { item -> String in
-            let components = Calendar.current.dateComponents([.year, .month], from: item.date)
+        let groupedByMonth = Dictionary(grouping: items) { item -> String in
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month], from: item.date)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM"
-            return dateFormatter.string(from: components.date ?? Date())
+            if let date = calendar.date(from: components) {
+                return dateFormatter.string(from: date)
+            } else {
+                return ""
+            }
         }
 
         // Преобразование словаря в массив кортежей (ключ, значение) и сортировка его по дате первого элемента в каждом подмассиве
-        let sortedGroupedData = groupedData.sorted { first, second in
+        let sortedGroupedData = groupedByMonth.sorted { first, second in
             guard let firstDate = first.value.first?.date, let secondDate = second.value.first?.date else {
                 return false
             }
@@ -56,6 +78,17 @@ private extension ListOfFinancesForMonthView {
 
         // Преобразование отсортированного массива кортежей обратно в массив массивов DataItem
         return sortedGroupedData.map { $0.value }
+    }
+    
+    func getUserData() {
+        DispatchQueue.main.async {
+            do {
+                var savedUser = try UserDefaultsService.getUser()
+                itemsGroupedByMonth = groupItems(with: savedUser.budgetItems)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

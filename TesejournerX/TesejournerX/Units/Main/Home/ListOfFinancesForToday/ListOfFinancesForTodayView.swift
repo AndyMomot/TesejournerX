@@ -10,21 +10,27 @@ import SwiftUI
 struct ListOfFinancesForTodayView: View {
     var items: [UserModel.BudgetItem]
     
-    init(items: [UserModel.BudgetItem]) {
-        self.items = items.filter { $0.date.isToday() }
-    }
-    
     var body: some View {
         List {
-            ForEach(items, id: \.id) { item in
-                Section {
-                    DayTransactionCell(item: item)
+            
+            if items.isEmpty {
+                Text("")
+                    .foregroundColor(.clear)
+                    .frame(height: 0)
+                    .listRowBackground(Color.clear)
+                    .listRowSeparator(.hidden)
+                    .listRowInsets(EdgeInsets())
+            } else {
+                ForEach(items, id: \.id) { item in
+                    Section {
+                        DayTransactionCell(item: item)
+                    }
                 }
+                .onDelete(perform: delete)
+                .listRowBackground(Color.clear)
+                .listRowSeparator(.hidden)
+                .listRowInsets(EdgeInsets())
             }
-            .onDelete(perform: delete)
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-            .listRowInsets(EdgeInsets())
             
         }
         .scrollContentBackground(.hidden)

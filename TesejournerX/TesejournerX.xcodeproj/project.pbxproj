@@ -50,6 +50,7 @@
 		4798BB012BAB581800C9F429 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4798BAFF2BAB581800C9F429 /* LaunchScreen.storyboard */; };
 		4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB092BAB597000C9F429 /* RootContentView.swift */; };
 		4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */; };
+		47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B7428E2BB728740038EFA5 /* HomeModels.swift */; };
 		47E828992BACC9A900534EF8 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828962BACC9A900534EF8 /* README.txt */; };
 		47E8289A2BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E828972BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf */; };
 		47E8289B2BACC9A900534EF8 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828982BACC9A900534EF8 /* OFL.txt */; };
@@ -110,6 +111,7 @@
 		4798BB022BAB581800C9F429 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4798BB092BAB597000C9F429 /* RootContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContentView.swift; sourceTree = "<group>"; };
 		4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		47B7428E2BB728740038EFA5 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		47E828962BACC9A900534EF8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		47E828972BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		47E828982BACC9A900534EF8 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				4773E7392BADA0E6007EFD34 /* HomeView.swift */,
+				47B7428E2BB728740038EFA5 /* HomeModels.swift */,
 				47692D302BB5C4520057A8DC /* ListOfFinancesForToday */,
 				47692D312BB5E8140057A8DC /* ListOfFinancesForMonth */,
 			);
@@ -610,6 +613,7 @@
 				4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				47692D372BB5E8590057A8DC /* MonthTransactionCell.swift in Sources */,
+				47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */,
 				476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
 				476D20232BB3205000FE4469 /* CategoryCell.swift in Sources */,

@@ -14,16 +14,16 @@ struct TabBarView: View {
         GeometryReader { geometry in
             TabView(selection: $selection) {
                 HomeView()
-                    .tag(0)
+                    .tag(TabBarSelectionView.main.rawValue)
                 
                 Text("budget")
-                    .tag(1)
+                    .tag(TabBarSelectionView.budget.rawValue)
                 
                 Text("help")
-                    .tag(3)
+                    .tag(TabBarSelectionView.help.rawValue)
                 
                 Text("settings")
-                    .tag(4)
+                    .tag(TabBarSelectionView.settings.rawValue)
             }
             .tableStyle(.inset)
             .overlay(alignment: .bottom) {

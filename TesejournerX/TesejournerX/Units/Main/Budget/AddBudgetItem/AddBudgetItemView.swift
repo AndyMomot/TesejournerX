@@ -12,7 +12,7 @@ struct AddBudgetItemView: View {
     
     @State private var topTabBarSelectedIndex = 0
     @State private var isFavorite = false
-    @State private var dateText = Date().todayString()
+    @State private var dateText = Date().toString()
     @State private var sumText = ""
     @State private var categoryText = ""
     @State private var noteText = ""
@@ -173,10 +173,11 @@ private extension AddBudgetItemView {
     
     func onSaveAndCleanFields() {
         if saveItem() {
-            dateText = Date().todayString()
+            dateText = Date().toString()
             sumText = ""
             categoryText = ""
             noteText = ""
+            selectedCategory = nil
         }
     }
     

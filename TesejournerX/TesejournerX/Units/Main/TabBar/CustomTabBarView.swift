@@ -55,7 +55,9 @@ struct CustomTabBarView: View {
                     }
                     
                     Button {
-                        selectedItem = index
+                        if !isSelectedItem {
+                            selectedItem = index
+                        }
                     } label: {
                         let spacing: CGFloat = index == 0 ? 10 : 7
                         VStack(spacing: spacing) {

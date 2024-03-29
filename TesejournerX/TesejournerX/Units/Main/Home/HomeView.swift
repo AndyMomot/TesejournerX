@@ -12,14 +12,17 @@ struct HomeView: View {
     @EnvironmentObject private var viewModel: AuthViewModel
     @ObservedObject var userDataPublisher = UserDataPublisher.shared
     
+    @State private var currentDaysDate = Date()
+    @State private var currentCalendarDate = Date()
+    @State private var currentMonthDate = Date()
+    @State private var currentDetailsDate = Date()
     
-    @State private var currentYear: Int = Date().getCurrent(period: .year)
     @State private var topTabBarSelectedIndex = 0
+    @State private var currentTabBarItem = Home.TopTabBarItem.days
     
     @State var onPlusTapped = false
-    @State private var showDeleteDayItemAlert = false
     
-    private var topTabBarItems = ["Dni", "Kalendarz", "Miesiąc", "Szczegóły"]
+    private var topTabBarItems = Home.TopTabBarItem.allCases.sorted(by: {$0.rawValue < $1.rawValue}).map {$0.title}
     @State private var balanceInfoData: [BalanceStatusView.StatusModel] = [
         .init(name: "Dochód", value: .zero),
         .init(name: "Koszty", value: .zero),
@@ -43,12 +46,10 @@ struct HomeView: View {
                             .offset(.init(width: .zero, height: -bounts.height * 0.14))
                         
                         VStack(spacing: .zero) {
-                            DateSwitcherView(title: "\(currentYear)") {
-                                currentYear -= 1
-                                print(currentYear)
+                            DateSwitcherView(title: getTopTabBarTitle()) {
+                                onDateSwithcerTapped(onLeft: true)
                             } onRight: {
-                                currentYear += 1
-                                print(currentYear)
+                                onDateSwithcerTapped(onLeft: false)
                             }
 
                             VStack(spacing: .zero) {
@@ -56,12 +57,18 @@ struct HomeView: View {
                                 
                                 BalanceStatusView(data: balanceInfoData)
                                 
-                                switch topTabBarSelectedIndex {
-                                case 0:
-                                    ListOfFinancesForTodayView(items: budgetItems)
-                                case 2:
-                                    ListOfFinancesForMonthView(items: budgetItems)
-                                default:
+                                switch currentTabBarItem {
+                                case .days:
+                                    ListOfFinancesForTodayView(items: budgetItems.filter({
+                                        $0.date.isDayEqual(to: currentDaysDate)
+                                    }))
+                                case .calendar:
+                                    EmptyView()
+                                case .month:
+                                    ListOfFinancesForMonthView(items: budgetItems.filter({
+                                        $0.date.isYearEqual(to: currentMonthDate)
+                                    }))
+                                case .details:
                                     EmptyView()
                                 }
                             }
@@ -117,6 +124,11 @@ struct HomeView: View {
                 getUserData()
             }
             .navigationBarTitleTextColor(.white)
+            .onChange(of: topTabBarSelectedIndex) { newValue in
+                if let newTabBarItem = Home.TopTabBarItem.init(rawValue: newValue) {
+                    currentTabBarItem = newTabBarItem
+                }
+            }
         }
     }
 }
@@ -137,6 +149,34 @@ private extension HomeView {
             } catch {
                 print(error.localizedDescription)
             }
+        }
+    }
+    
+    func onDateSwithcerTapped(onLeft: Bool) {
+        let value: Int = onLeft ? -1 : 1
+        
+        switch currentTabBarItem {
+        case .days:
+            currentDaysDate = currentDaysDate.addOrSubtract(component: .day, value: value)
+        case .calendar:
+            currentCalendarDate = currentCalendarDate.addOrSubtract(component: .month, value: value)
+        case .month:
+            currentMonthDate = currentMonthDate.addOrSubtract(component: .year, value: value)
+        case .details:
+            currentDetailsDate = currentDetailsDate.addOrSubtract(component: .year, value: value)
+        }
+    }
+    
+    func getTopTabBarTitle() -> String {
+        switch currentTabBarItem {
+        case .days:
+            return currentDaysDate.toString(format: .dayMonthNameYear)
+        case .calendar:
+            return currentCalendarDate.toString(format: .monthNameYear)
+        case .month:
+            return currentMonthDate.toString(format: .year)
+        case .details:
+            return currentDetailsDate.toString(format: .year)
         }
     }
 }

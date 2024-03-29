@@ -47,8 +47,8 @@ struct CategoryCell: View {
                             .scaledToFit()
                             .frame(height: 12)
                             .foregroundColor(.black)
-                            .padding(.trailing, 5)
                     }
+                    .padding(.trailing, 10)
                 }
             }
             .background(Color.white)
