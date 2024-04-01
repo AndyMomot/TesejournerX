@@ -25,10 +25,12 @@ internal enum Colors {
   internal static let blue = ColorAsset(name: "Blue")
   internal static let borderGray = ColorAsset(name: "BorderGray")
   internal static let divider = ColorAsset(name: "Divider")
+  internal static let gray = ColorAsset(name: "Gray")
   internal static let liteGray = ColorAsset(name: "LiteGray")
   internal static let middleGray = ColorAsset(name: "MiddleGray")
   internal static let orange = ColorAsset(name: "Orange")
   internal static let blueViolet = ColorAsset(name: "blueViolet")
+  internal static let liteBlue = ColorAsset(name: "liteBlue")
   internal static let silver = ColorAsset(name: "silver")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

@@ -20,9 +20,20 @@ extension Date {
         return calendar.isDateInToday(self)
     }
     
+    func isWeekend() -> Bool {
+        let calendar = Calendar(identifier: .iso8601)
+        let weekday = calendar.component(.weekday, from: self)
+        return weekday == 7 || weekday == 1 // Суббота (7) и воскресенье (1) - выходные дни в Польше
+    }
+    
     func getCurrent(period component: Calendar.Component) -> Int {
         let calendar = Calendar.current
         return calendar.component(component, from: Date())
+    }
+    
+    func getCalendarComponet(period component: Calendar.Component) -> Int {
+        let calendar = Calendar.current
+        return calendar.component(component, from: self)
     }
 }
 
@@ -92,6 +103,7 @@ extension Date {
 extension Date {
     enum Format: String {
         case ddMM = "dd.MM"
+        case mmYY = "MM.yy"
         case ddMMyy = "dd.MM.yy"
         case dayMonthNameYear = "d MMMM. yyyy 'r.'"
         case monthNameYear = "MMMM. yyyy 'r.'"

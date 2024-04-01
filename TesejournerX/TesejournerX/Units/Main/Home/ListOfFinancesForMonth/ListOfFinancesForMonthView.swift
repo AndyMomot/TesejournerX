@@ -83,7 +83,7 @@ private extension ListOfFinancesForMonthView {
     func getUserData() {
         DispatchQueue.main.async {
             do {
-                var savedUser = try UserDefaultsService.getUser()
+                let savedUser = try UserDefaultsService.getUser()
                 itemsGroupedByMonth = groupItems(with: savedUser.budgetItems)
             } catch {
                 print(error.localizedDescription)

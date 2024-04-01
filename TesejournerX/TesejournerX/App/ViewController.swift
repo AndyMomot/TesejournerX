@@ -18,16 +18,12 @@ final class ViewController: UIViewController {
 
 private extension ViewController {
     func showSwitUIView() {
-        print("Showing TabBarView")
-        // Создаем новый UIHostingController с TabBarView
         let swiftUIViewController = UIHostingController(rootView: RootContentView())
         
-        // Добавляем новый контроллер как дочерний
         addChild(swiftUIViewController)
         view.addSubview(swiftUIViewController.view)
         swiftUIViewController.didMove(toParent: self)
         
-        // Настраиваем ограничения для SwiftUI View
         swiftUIViewController.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             swiftUIViewController.view.topAnchor.constraint(equalTo: view.topAnchor),

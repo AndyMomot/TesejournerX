@@ -51,6 +51,8 @@
 		4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB092BAB597000C9F429 /* RootContentView.swift */; };
 		4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */; };
 		47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B7428E2BB728740038EFA5 /* HomeModels.swift */; };
+		47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E367732BBAB25700F45CDF /* CustomCalendarView.swift */; };
+		47E367772BBAB81200F45CDF /* DayOfMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */; };
 		47E828992BACC9A900534EF8 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828962BACC9A900534EF8 /* README.txt */; };
 		47E8289A2BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E828972BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf */; };
 		47E8289B2BACC9A900534EF8 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828982BACC9A900534EF8 /* OFL.txt */; };
@@ -112,6 +114,8 @@
 		4798BB092BAB597000C9F429 /* RootContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContentView.swift; sourceTree = "<group>"; };
 		4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
 		47B7428E2BB728740038EFA5 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
+		47E367732BBAB25700F45CDF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
+		47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfMonthCell.swift; sourceTree = "<group>"; };
 		47E828962BACC9A900534EF8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		47E828972BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		47E828982BACC9A900534EF8 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 				4773E7392BADA0E6007EFD34 /* HomeView.swift */,
 				47B7428E2BB728740038EFA5 /* HomeModels.swift */,
 				47692D302BB5C4520057A8DC /* ListOfFinancesForToday */,
+				47E367722BBAB24E00F45CDF /* CustomCalendar */,
 				47692D312BB5E8140057A8DC /* ListOfFinancesForMonth */,
 			);
 			path = Home;
@@ -504,6 +509,15 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		47E367722BBAB24E00F45CDF /* CustomCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				47E367732BBAB25700F45CDF /* CustomCalendarView.swift */,
+				47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */,
+			);
+			path = CustomCalendar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -611,6 +625,7 @@
 				4773ECE62BADDF0A007EFD34 /* CustomTabBarView.swift in Sources */,
 				4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */,
 				4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */,
+				47E367772BBAB81200F45CDF /* DayOfMonthCell.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				47692D372BB5E8590057A8DC /* MonthTransactionCell.swift in Sources */,
 				47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */,
@@ -623,6 +638,7 @@
 				472B49202BAC8A080048355A /* Images.generated.swift in Sources */,
 				4773ECF92BADFD81007EFD34 /* Double+Additions.swift in Sources */,
 				476CC6162BB45024003EF965 /* DayTransactionCell.swift in Sources */,
+				47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */,
 				475C50772BB0A40700618F2C /* InputView.swift in Sources */,
 				4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */,
 				472B49152BAC89400048355A /* Strings.generated.swift in Sources */,

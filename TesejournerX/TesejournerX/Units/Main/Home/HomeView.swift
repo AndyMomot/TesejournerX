@@ -63,7 +63,11 @@ struct HomeView: View {
                                         $0.date.isDayEqual(to: currentDaysDate)
                                     }))
                                 case .calendar:
-                                    EmptyView()
+                                    CustomCalendarView(date: currentCalendarDate)
+                                        .padding(.top, bounts.height * 0.043)
+                                        .padding(.horizontal, 30)
+//                                        .padding(.bottom, bounts.height * 0.28)
+                                        .frame(height: bounts.height * 0.5)
                                 case .month:
                                     ListOfFinancesForMonthView(items: budgetItems.filter({
                                         $0.date.isYearEqual(to: currentMonthDate)

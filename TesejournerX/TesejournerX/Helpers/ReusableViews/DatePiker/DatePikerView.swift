@@ -16,20 +16,28 @@ struct DatePikerView: View {
     private let today = Date()
     
     var body: some View {
-        VStack {
-            DatePicker("", selection: $selectedDate, in: ...today, displayedComponents: .date)
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .onChange(of: selectedDate) { newValue in
-                    didSelectDate(newValue)
-            }
+        ZStack {
+            Color.white
+                .ignoresSafeArea()
             
-            NextButtonView(text: "Z powrotem", state: .bordered) {
-                didSelectDate(today)
+            VStack {
+                DatePicker("", selection: $selectedDate, in: ...today, displayedComponents: .date)
+                    .datePickerStyle(GraphicalDatePickerStyle())
+                    .onChange(of: selectedDate) { newValue in
+                        didSelectDate(newValue)
+                }
+                
+                NextButtonView(text: "Z powrotem", state: .bordered) {
+                    didSelectDate(today)
+                }
+                .frame(height: 52)
+                .padding()
             }
-            .frame(height: 52)
-            .padding()
+            .background {
+                Color(.systemBackground)
+            }
+            .navigationBarBackButtonHidden()
         }
-        .navigationBarBackButtonHidden()
     }
 }
 

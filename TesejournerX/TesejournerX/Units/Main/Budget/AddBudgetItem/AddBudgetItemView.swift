@@ -56,7 +56,7 @@ struct AddBudgetItemView: View {
                                     
                                     // Sum
                                     InputView(title: "Kwota", placeholder: "0", text: $sumText) {}
-                                        .keyboardType(.numberPad)
+                                        .keyboardType(.decimalPad)
                                     
                                     
                                     InputView(title: "Kategoria", text: $categoryText) {
@@ -111,6 +111,18 @@ struct AddBudgetItemView: View {
                 }
                     .opacity(showCategories ? 1 : 0)
             )
+            .onChange(of: sumText, perform: { newText in
+                let priviewsText = sumText.dropLast(1)
+                let newChar = String(newText.last ?? Character(""))
+                
+                if priviewsText.contains(".") && newChar == "." {
+                    sumText.removeLast()
+                }
+                
+                if newText == "." {
+                    sumText = "0."
+                }
+            })
             .onChange(of: selectedCategory) { newValue in
                 withAnimation {
                     categoryText = newValue?.name ?? ""
@@ -218,6 +230,11 @@ private extension AddBudgetItemView {
     func validateFields() -> Bool {
         let isValidDate = dateText.toDateWith(format: .ddMMyy) != nil
         dropPointInSumIfItLastChar()
+        
+        if sumText.last == "." {
+            sumText.removeLast()
+        }
+        
         let isValidSum = Double(sumText) != nil
         var isValidCategory = !categoryText.isEmpty
         if !getAllCategories().contains(where: {$0.name == categoryText}) {
