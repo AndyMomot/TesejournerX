@@ -38,3 +38,23 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+
+enum SwipeDirection {
+    case left
+    case right
+}
+
+extension View {
+    func swipeGesture(onEnded: @escaping (SwipeDirection) -> Void) -> some View {
+        return self.gesture(
+            DragGesture(minimumDistance: 50, coordinateSpace: .local)
+                .onEnded { value in
+                    if value.translation.width > 0 {
+                        onEnded(.right)
+                    } else {
+                        onEnded(.left)
+                    }
+                }
+        )
+    }
+}

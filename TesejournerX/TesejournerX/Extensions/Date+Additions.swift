@@ -109,5 +109,7 @@ extension Date {
         case monthNameYear = "MMMM. yyyy 'r.'"
         case month = "MMMM"
         case year = "yyyy 'r.'"
+        
+        case yyyyMM = "yyyy-MM"
     }
 }

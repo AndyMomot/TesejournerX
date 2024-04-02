@@ -16,6 +16,8 @@
 		472B49202BAC8A080048355A /* Images.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B491F2BAC8A080048355A /* Images.generated.swift */; };
 		472B49222BAC8A140048355A /* Fonts.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B49212BAC8A140048355A /* Fonts.generated.swift */; };
 		472B492E2BAC99A30048355A /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B492D2BAC99A30048355A /* LoadingView.swift */; };
+		472B4A912BBBF7F0005A74BD /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B4A902BBBF7F0005A74BD /* DetailsView.swift */; };
+		472B4A942BBC012F005A74BD /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472B4A932BBC012F005A74BD /* ProgressView.swift */; };
 		475C506A2BB08D6800618F2C /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50692BB08D6800618F2C /* UserModel.swift */; };
 		475C50722BB09B3C00618F2C /* AddBudgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50712BB09B3C00618F2C /* AddBudgetItemView.swift */; };
 		475C50772BB0A40700618F2C /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 475C50762BB0A40700618F2C /* InputView.swift */; };
@@ -77,6 +79,8 @@
 		472B492A2BAC995A0048355A /* LexendDeca-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-ExtraLight.ttf"; sourceTree = "<group>"; };
 		472B492B2BAC995A0048355A /* LexendDeca-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-Black.ttf"; sourceTree = "<group>"; };
 		472B492D2BAC99A30048355A /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		472B4A902BBBF7F0005A74BD /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		472B4A932BBC012F005A74BD /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		475C50692BB08D6800618F2C /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		475C50712BB09B3C00618F2C /* AddBudgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetItemView.swift; sourceTree = "<group>"; };
 		475C50762BB0A40700618F2C /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
@@ -187,6 +191,22 @@
 			path = Loading;
 			sourceTree = "<group>";
 		};
+		472B4A8F2BBBF7E1005A74BD /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				472B4A902BBBF7F0005A74BD /* DetailsView.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		472B4A922BBC011B005A74BD /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				472B4A932BBC012F005A74BD /* ProgressView.swift */,
+			);
+			path = ProgressView;
+			sourceTree = "<group>";
+		};
 		475C50672BB08D4B00618F2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,12 +248,12 @@
 			path = InputView;
 			sourceTree = "<group>";
 		};
-		475C50782BB0A4A200618F2C /* OrangePlusButto */ = {
+		475C50782BB0A4A200618F2C /* OrangePlusButton */ = {
 			isa = PBXGroup;
 			children = (
 				475C50792BB0A4AB00618F2C /* OrangePlusButtoView.swift */,
 			);
-			path = OrangePlusButto;
+			path = OrangePlusButton;
 			sourceTree = "<group>";
 		};
 		475C507B2BB0A83C00618F2C /* Category */ = {
@@ -300,8 +320,9 @@
 		4773E72A2BAD7B90007EFD34 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				472B4A922BBC011B005A74BD /* ProgressView */,
 				476D1A752BB205A700FE4469 /* DatePiker */,
-				475C50782BB0A4A200618F2C /* OrangePlusButto */,
+				475C50782BB0A4A200618F2C /* OrangePlusButton */,
 				475C50732BB0A3F200618F2C /* InputView */,
 				4773ECF32BADF48A007EFD34 /* TopTabView */,
 				4773ECF02BADF0F6007EFD34 /* DateSwitcher */,
@@ -353,6 +374,7 @@
 				47692D302BB5C4520057A8DC /* ListOfFinancesForToday */,
 				47E367722BBAB24E00F45CDF /* CustomCalendar */,
 				47692D312BB5E8140057A8DC /* ListOfFinancesForMonth */,
+				472B4A8F2BBBF7E1005A74BD /* Details */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -628,6 +650,7 @@
 				47E367772BBAB81200F45CDF /* DayOfMonthCell.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				47692D372BB5E8590057A8DC /* MonthTransactionCell.swift in Sources */,
+				472B4A942BBC012F005A74BD /* ProgressView.swift in Sources */,
 				47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */,
 				476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
@@ -641,6 +664,7 @@
 				47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */,
 				475C50772BB0A40700618F2C /* InputView.swift in Sources */,
 				4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */,
+				472B4A912BBBF7F0005A74BD /* DetailsView.swift in Sources */,
 				472B49152BAC89400048355A /* Strings.generated.swift in Sources */,
 				476D20202BB31C8500FE4469 /* CategoriesView.swift in Sources */,
 				47692D2F2BB5BE510057A8DC /* ListOfFinancesForTodayView.swift in Sources */,

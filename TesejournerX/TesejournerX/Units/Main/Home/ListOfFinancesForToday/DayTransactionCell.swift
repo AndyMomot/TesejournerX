@@ -18,13 +18,20 @@ struct DayTransactionCell: View {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 24, height: 24)
+                            .frame(width: 28, height: 28)
                             .cornerRadius(12)
+                    } else {
+                        Rectangle()
+                            .scaledToFill()
+                            .frame(width: 28, height: 28)
+                            .cornerRadius(12)
+                            .hidden()
                     }
                     
                     Text(item.category.name)
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 12))
+                        .frame(minWidth: 60)
                 }
                 .padding(.leading, 13)
                 
@@ -49,7 +56,7 @@ struct DayTransactionCell: View {
                 
                 Text("Zł " + item.sum.string())
                     .foregroundColor(
-                        item.type == .cost ? Colors.orange.swiftUIColor : Colors.blue.swiftUIColor
+                        item.type == .cost ? Colors.orange.swiftUIColor : Colors.blueViolet.swiftUIColor
                     )
                     .font(Fonts.LexendDeca.bold.swiftUIFont(size: 14))
                     .multilineTextAlignment(.center)

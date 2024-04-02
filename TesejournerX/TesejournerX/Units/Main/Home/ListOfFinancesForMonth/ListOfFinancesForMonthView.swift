@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ListOfFinancesForMonthView: View {
-    var items: [UserModel.BudgetItem]
+    var date: Date
     
-    init(items: [UserModel.BudgetItem]) {
-        self.items = items
+    init(date: Date) {
+        self.date = date
     }
     
     @ObservedObject var userDataPublisher = UserDataPublisher.shared
@@ -19,7 +19,7 @@ struct ListOfFinancesForMonthView: View {
     
     var body: some View {
         List {
-            if items.isEmpty {
+            if itemsGroupedByMonth.isEmpty {
                 Text("")
                     .foregroundColor(.clear)
                     .frame(height: 0)
@@ -39,28 +39,27 @@ struct ListOfFinancesForMonthView: View {
         }
         .scrollContentBackground(.hidden)
         .onAppear {
-            viewDidAppear()
+            getUserData(with: date)
         }
         .onReceive(userDataPublisher.objectDidChange) { _ in
-            getUserData()
+            getUserData(with: date)
+        }
+        .onChange(of: date) { newValue in
+            getUserData(with: newValue)
         }
     }
 }
 
 private extension ListOfFinancesForMonthView {
-    func viewDidAppear() {
-        DispatchQueue.main.async {
-            itemsGroupedByMonth = groupItems(with: items)
-        }
-    }
-    
-    func groupItems(with items: [UserModel.BudgetItem]) -> [[UserModel.BudgetItem]] {
-        // Создание словаря, в котором ключи - это год и месяц, а значения - это массив элементов с этими годом и месяцем
+    func groupeBudgetItemsBy(items: [UserModel.BudgetItem],
+                             components: Set<Calendar.Component>,
+                             with format: Date.Format) -> [[UserModel.BudgetItem]] {
+        // Создание словаря, в котором ключи - это components, а значения - это массив элементов с этими components
         let groupedByMonth = Dictionary(grouping: items) { item -> String in
             let calendar = Calendar.current
-            let components = calendar.dateComponents([.year, .month], from: item.date)
+            let components = calendar.dateComponents(components, from: item.date)
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM"
+            dateFormatter.dateFormat = format.rawValue
             if let date = calendar.date(from: components) {
                 return dateFormatter.string(from: date)
             } else {
@@ -80,11 +79,18 @@ private extension ListOfFinancesForMonthView {
         return sortedGroupedData.map { $0.value }
     }
     
-    func getUserData() {
+    func getUserData(with date: Date) {
+        itemsGroupedByMonth.removeAll()
+        
         DispatchQueue.main.async {
             do {
                 let savedUser = try UserDefaultsService.getUser()
-                itemsGroupedByMonth = groupItems(with: savedUser.budgetItems)
+                
+                let items = savedUser.budgetItems.filter({
+                    return $0.date.isYearEqual(to: date)
+                })
+                
+                itemsGroupedByMonth = groupeBudgetItemsBy(items: items, components: [.month, .year], with: .yyyyMM)
             } catch {
                 print(error.localizedDescription)
             }
@@ -94,6 +100,6 @@ private extension ListOfFinancesForMonthView {
 
 struct ListOfFinancesForMonthView_Previews: PreviewProvider {
     static var previews: some View {
-        ListOfFinancesForMonthView(items: [])
+        ListOfFinancesForMonthView(date: .init())
     }
 }

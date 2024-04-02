@@ -22,20 +22,19 @@ final class UserDataPublisher: ObservableObject {
 
 struct UserModel: Codable {
     private(set) var id = 1
-    var budget: Budget = .init()
     var budgetItems: [BudgetItem] = []
     
     private(set) lazy var income = budgetItems.filter {$0.type == .income}.reduce(0) {$0 + $1.sum}
     private(set) lazy var costs = budgetItems.filter {$0.type == .cost}.reduce(0) {$0 + $1.sum}
     private(set) lazy var balance = income - costs
     
-    func getBudgetItemsGroupByMonth() -> [[UserModel.BudgetItem]] {
-        // Создание словаря, в котором ключи - это год и месяц, а значения - это массив элементов с этими годом и месяцем
+    func getGroupedBudgetItemsBy(_ components: Set<Calendar.Component>, with format: Date.Format) -> [[UserModel.BudgetItem]] {
+        // Создание словаря, в котором ключи - это components, а значения - это массив элементов с этими components
         let groupedByMonth = Dictionary(grouping: budgetItems) { item -> String in
             let calendar = Calendar.current
-            let components = calendar.dateComponents([.year, .month], from: item.date)
+            let components = calendar.dateComponents(components, from: item.date)
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM"
+            dateFormatter.dateFormat = format.rawValue
             if let date = calendar.date(from: components) {
                 return dateFormatter.string(from: date)
             } else {
@@ -53,42 +52,6 @@ struct UserModel: Codable {
 
         // Преобразование отсортированного массива кортежей обратно в массив массивов DataItem
         return sortedGroupedData.map { $0.value }
-    }
-    
-    func getBudgetItemsGroupByDay() -> [[UserModel.BudgetItem]] {
-        // Создание словаря, в котором ключи - это день, год и месяц, а значения - это массив элементов с этими днем, годом и месяцем
-        let groupedByMonth = Dictionary(grouping: budgetItems) { item -> String in
-            let calendar = Calendar.current
-            let components = calendar.dateComponents([.day, .year, .month], from: item.date)
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = Date.Format.ddMMyy.rawValue
-            if let date = calendar.date(from: components) {
-                return dateFormatter.string(from: date)
-            } else {
-                return ""
-            }
-        }
-
-        // Преобразование словаря в массив кортежей (ключ, значение) и сортировка его по дате первого элемента в каждом подмассиве
-        let sortedGroupedData = groupedByMonth.sorted { first, second in
-            guard let firstDate = first.value.first?.date, let secondDate = second.value.first?.date else {
-                return false
-            }
-            return firstDate < secondDate
-        }
-
-        // Преобразование отсортированного массива кортежей обратно в массив массивов DataItem
-        return sortedGroupedData.map { $0.value }
-    }
-}
-
-extension UserModel {
-    struct Budget: Codable {
-        var income: Double = .zero
-        var costs: Double = .zero
-        var together: Double {
-            income - costs
-        }
     }
 }
 

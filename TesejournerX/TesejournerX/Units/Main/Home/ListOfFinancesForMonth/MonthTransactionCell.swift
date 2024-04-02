@@ -17,12 +17,13 @@ struct MonthTransactionCell: View {
         VStack {
             HStack(alignment: .center, spacing: 15) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(items.first?.date.toString(format: .month) ?? "")
+                    let monthName = items.first?.date.toString(format: .month).capitalized ?? ""
+                    Text(monthName)
                         .foregroundColor(.black)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 12))
                     
                     Text(items.first?.date.getStartEndDaysOfMonts() ?? "")
-                        .foregroundColor(.black)
+                        .foregroundColor(Colors.middleGray.swiftUIColor)
                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 12))
                 }
                 .padding(.leading, 13)
@@ -34,10 +35,10 @@ struct MonthTransactionCell: View {
                     
                 VStack(alignment: .leading, spacing: 5) {
                     Text("Wydane")
-                        .foregroundColor(Colors.orange.swiftUIColor)
+                        .foregroundColor(.black)
                     
                     Text("Dochód.")
-                        .foregroundColor(Colors.blue.swiftUIColor)
+                        .foregroundColor(.black)
                 }
                 .font(Fonts.LexendDeca.regular.swiftUIFont(size: 14))
                 .multilineTextAlignment(.leading)
@@ -49,7 +50,7 @@ struct MonthTransactionCell: View {
                         .foregroundColor(Colors.orange.swiftUIColor)
                     
                     Text("Zł " + income.string())
-                        .foregroundColor(Colors.blue.swiftUIColor)
+                        .foregroundColor(Colors.blueViolet.swiftUIColor)
                 }
                 .font(Fonts.LexendDeca.bold.swiftUIFont(size: 14))
                 .multilineTextAlignment(.leading)

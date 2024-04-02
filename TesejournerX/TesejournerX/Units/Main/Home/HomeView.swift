@@ -62,18 +62,48 @@ struct HomeView: View {
                                     ListOfFinancesForTodayView(items: budgetItems.filter({
                                         $0.date.isDayEqual(to: currentDaysDate)
                                     }))
+                                    .swipeGesture { direction in
+                                        switch direction {
+                                        case .left:
+                                            onDateSwithcerTapped(onLeft: false)
+                                        case .right:
+                                            onDateSwithcerTapped(onLeft: true)
+                                        }
+                                    }
                                 case .calendar:
                                     CustomCalendarView(date: currentCalendarDate)
                                         .padding(.top, bounts.height * 0.043)
                                         .padding(.horizontal, 30)
-//                                        .padding(.bottom, bounts.height * 0.28)
                                         .frame(height: bounts.height * 0.5)
+                                        .swipeGesture { direction in
+                                            switch direction {
+                                            case .left:
+                                                onDateSwithcerTapped(onLeft: false)
+                                            case .right:
+                                                onDateSwithcerTapped(onLeft: true)
+                                            }
+                                        }
                                 case .month:
-                                    ListOfFinancesForMonthView(items: budgetItems.filter({
-                                        $0.date.isYearEqual(to: currentMonthDate)
-                                    }))
+                                    ListOfFinancesForMonthView(date: currentMonthDate)
+                                    .swipeGesture { direction in
+                                        switch direction {
+                                        case .left:
+                                            onDateSwithcerTapped(onLeft: false)
+                                        case .right:
+                                            onDateSwithcerTapped(onLeft: true)
+                                        }
+                                    }
                                 case .details:
-                                    EmptyView()
+                                    DetailsView(date: currentDetailsDate)
+                                        .padding(.top, 30)
+                                        .swipeGesture { direction in
+                                            switch direction {
+                                            case .left:
+                                                onDateSwithcerTapped(onLeft: false)
+                                            case .right:
+                                                onDateSwithcerTapped(onLeft: true)
+                                            }
+                                        }
                                 }
                             }
                         

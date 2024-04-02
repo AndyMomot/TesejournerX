@@ -23,7 +23,7 @@ struct CustomCalendarView: View {
     let numberOfRows = 5
     let daysInWeek = 7
     
-    @State private var itemsGroupedByMonth: [[UserModel.BudgetItem]] = []
+    @State private var itemsGroupedByDay: [[UserModel.BudgetItem]] = []
     
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
@@ -51,22 +51,32 @@ struct CustomCalendarView: View {
             // Тело календаря
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(0..<numberOfRows, id: \.self) { row in
+                    Divider()
+                        .frame(width: 0.5)
+                        .background {
+                            Colors.middleGray.swiftUIColor.opacity(0.8)
+                        }
+                    
                     HStack(alignment: .center, spacing: .zero) {
-                        Divider()
-                        
                         ForEach(0..<self.daysInWeek, id: \.self) { column in
                             if let date = dayOfMonthForTest(row: row, column: column).0 {
                                 let state = dayOfMonthForTest(row: row, column: column).1
                                 let model = createDayModel(for: date, state: state)
                                 DayOfMonthCell(model: model)
                             }
+                            
                             Divider()
-                                .frame(width: 1)
-                                .background { Colors.middleGray.swiftUIColor }
-                                
+                                .frame(width: 0.5)
+                                .background {
+                                    Colors.middleGray.swiftUIColor.opacity(0.8)
+                                }
+        
                         }
                     }
-                    .border(Colors.middleGray.swiftUIColor, width: 0.5)
+                    .border(
+                        Colors.middleGray.swiftUIColor.opacity(0.8),
+                        width: 0.5
+                    )
                 }
                 
                 Divider()
@@ -74,7 +84,7 @@ struct CustomCalendarView: View {
         }
         .onAppear {
             let user = try? UserDefaultsService.getUser()
-            itemsGroupedByMonth = user?.getBudgetItemsGroupByDay() ?? []
+            itemsGroupedByDay = user?.getGroupedBudgetItemsBy([.day, .month, .year], with: .ddMMyy) ?? []
         }
     }
 }
@@ -144,12 +154,12 @@ private extension CustomCalendarView {
         var income: Double = 0
         var cost: Double = 0
         
-        if let index = itemsGroupedByMonth.firstIndex(where: { array in
+        if let index = itemsGroupedByDay.firstIndex(where: { array in
             array.contains { item in
                 item.date == date
             }
         }) {
-            let row = itemsGroupedByMonth[index]
+            let row = itemsGroupedByDay[index]
             income = row.filter {$0.type == .income}.reduce(0) {$0 + $1.sum}
             cost = row.filter {$0.type == .cost}.reduce(0) {$0 + $1.sum}
         }
