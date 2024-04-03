@@ -8,31 +8,31 @@
 import SwiftUI
 
 struct AddBudgetItemView: View {
+    var onDimiss: (() -> Void)?
     @Environment(\.presentationMode) var presentationMode
+    @StateObject private var viewModel = AddBudgetItemViewModel()
+    private var itemToEditID: String?
     
-    @State private var topTabBarSelectedIndex = 0
-    @State private var isFavorite = false
-    @State private var dateText = Date().toString()
-    @State private var sumText = ""
-    @State private var categoryText = ""
-    @State private var noteText = ""
-    
-    @State var selectedCategory: Category?
-    
-    @State private var showDatePicker = false
-    @State private var showCategories = false
-    
-    private var topTabBarItems = ["Dochód", "Koszty"]
     private var bounts = UIScreen.main.bounds
+    
+    init(onDimiss: (() -> Void)? = nil) {
+        self.onDimiss = onDimiss
+    }
+    
+    init(editItemID: String, onDimiss: (() -> Void)? = nil) {
+        itemToEditID = editItemID
+        self.onDimiss = onDimiss
+    }
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Colors.blue.swiftUIColor
-                    .ignoresSafeArea(edges: .top)
+                    .ignoresSafeArea(edges: .vertical)
                 
                 VStack(spacing: 0) {
-                    TopTabView(selectedItem: $topTabBarSelectedIndex, items: topTabBarItems)
+                    TopTabView(selectedItem: $viewModel.topTabBarSelectedIndex,
+                               items: viewModel.topTabBarItems)
                     
                     Rectangle()
                         .foregroundColor(Colors.silver.swiftUIColor)
@@ -45,40 +45,61 @@ struct AddBudgetItemView: View {
                                 VStack(spacing: 15) {
                                     
                                     // Date
-                                    InputView(title: "Data", text: $dateText) {
+                                    InputView(title: "Data", text: $viewModel.dateText) {
                                         withAnimation {
-                                            showDatePicker = true
+                                            viewModel.showDatePicker = true
                                         }
                                     }
-                                    .navigationDestination(isPresented: $showDatePicker) {
-                                        DatePikerView(dateString: $dateText)
+                                    .navigationDestination(isPresented: $viewModel.showDatePicker) {
+                                        DatePikerView(dateString: $viewModel.dateText)
                                     }
                                     
                                     // Sum
-                                    InputView(title: "Kwota", placeholder: "0", text: $sumText) {}
+                                    InputView(title: "Kwota", placeholder: "0", text: $viewModel.sumText) {}
                                         .keyboardType(.decimalPad)
                                     
                                     
-                                    InputView(title: "Kategoria", text: $categoryText) {
+                                    InputView(title: "Kategoria", text: $viewModel.categoryText) {
                                         hideKeyboard()
                                         withAnimation {
-                                            showCategories = true
+                                            viewModel.showCategories = true
                                         }
                                     }
                                     
-                                    InputView(title: "Notatka", text: $noteText) {}
+                                    InputView(title: "Notatka", text: $viewModel.noteText) {}
                                 }
                                 
                                 VStack(alignment: .center, spacing: 20) {
                                     NextButtonView(text: "Zapisz", state: .filled) {
-                                        onSaveAndReturn()
+                                        
+                                        if viewModel.itemToEditID == nil {
+                                            if viewModel.saveItem() {
+                                                self.presentationMode.wrappedValue.dismiss()
+                                                onDimiss?()
+                                            } else {
+                                                triggerVibration(style: .medium)
+                                            }
+                                        } else {
+                                            if viewModel.editItem() {
+                                                self.presentationMode.wrappedValue.dismiss()
+                                                onDimiss?()
+                                            } else {
+                                                triggerVibration(style: .medium)
+                                            }
+                                        }
                                     }
                                     .frame(height: 52)
                                     
-                                    NextButtonView(text: "Następny", state: .bordered) {
-                                        onSaveAndCleanFields()
+                                    if viewModel.showNextButton {
+                                        NextButtonView(text: "Następny", state: .bordered) {
+                                            if viewModel.saveItem() {
+                                                viewModel.cleanFields()
+                                            } else {
+                                                triggerVibration(style: .medium)
+                                            }
+                                        }
+                                        .frame(height: 52)
                                     }
-                                    .frame(height: 52)
                                 }
                                 
                                 Spacer(minLength: .zero)
@@ -96,53 +117,56 @@ struct AddBudgetItemView: View {
                     .background(Color.white)
                     .cornerRadius(20, corners: [.topLeft, .topRight])
                     .padding(.top, -19)
+                    .ignoresSafeArea(edges: .bottom)
                 }
             }
             .overlay(
                 ZStack {
-                    if showCategories {
+                    if viewModel.showCategories {
                         VStack {
                             Spacer()
-                            CategoriesView(showSelf: $showCategories,
-                                           selectedCategory: $selectedCategory)
+                            CategoriesView(showSelf: $viewModel.showCategories,
+                                           selectedCategory: $viewModel.selectedCategory)
                             .frame(height: bounts.height * 0.6)
                         }
                     }
                 }
-                    .opacity(showCategories ? 1 : 0)
+                    .opacity(viewModel.showCategories ? 1 : 0)
             )
-            .onChange(of: sumText, perform: { newText in
-                let priviewsText = sumText.dropLast(1)
+            .onChange(of: viewModel.sumText, perform: { newText in
+                let priviewsText = viewModel.sumText.dropLast(1)
                 let newChar = String(newText.last ?? Character(""))
                 
                 if priviewsText.contains(".") && newChar == "." {
-                    sumText.removeLast()
+                    viewModel.sumText.removeLast()
                 }
                 
                 if newText == "." {
-                    sumText = "0."
+                    viewModel.sumText = "0."
                 }
             })
-            .onChange(of: selectedCategory) { newValue in
+            .onChange(of: viewModel.selectedCategory) { newValue in
                 withAnimation {
-                    categoryText = newValue?.name ?? ""
-                    showCategories = false
+                    viewModel.categoryText = newValue?.name ?? ""
+                    viewModel.showCategories = false
                 }
             }
-            .navigationBarTitle(topTabBarItems[topTabBarSelectedIndex], displayMode: .inline)
+            .navigationBarTitle(viewModel.topTabBarItems[viewModel.topTabBarSelectedIndex],
+                                displayMode: .inline)
             .navigationBarItems(
                 leading:
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
+                        onDimiss?()
                     }, label: {
                         Image(Asset.leftArrow.name)
                     })
                 ,
                 trailing:
                     Button(action: {
-                        isFavorite.toggle()
+                        viewModel.isFavorite.toggle()
                     }, label: {
-                        if isFavorite {
+                        if viewModel.isFavorite {
                             Image(systemName: "star.fill")
                                 .foregroundColor(.white)
                         } else {
@@ -153,6 +177,9 @@ struct AddBudgetItemView: View {
             )
             .navigationBarTitleTextColor(.white)
             .navigationBarBackButtonHidden()
+            .onAppear {
+                viewModel.autofillFieldsWithitem(id: itemToEditID)
+            }
         }
     }
 }
@@ -173,97 +200,13 @@ private extension AddBudgetItemView {
                 from: nil,
                 for: nil)
             
-            dropPointInSumIfItLastChar()
-        }
-    }
-    
-    func onSaveAndReturn() {
-        if saveItem() {
-            self.presentationMode.wrappedValue.dismiss()
-        }
-    }
-    
-    func onSaveAndCleanFields() {
-        if saveItem() {
-            dateText = Date().toString()
-            sumText = ""
-            categoryText = ""
-            noteText = ""
-            selectedCategory = nil
-        }
-    }
-    
-    func saveItem() -> Bool {
-        if validateFields() {
-            guard let savedUser = getUserData() else { return false }
-            var newUser = savedUser
-            
-            let category = getAllCategories().first(where: {
-                $0.name == categoryText
-            }) ?? StaticFiles.Categories.inne
-            
-            let item = UserModel.BudgetItem(
-                isFavorite: self.isFavorite,
-                type: .init(rawValue: topTabBarSelectedIndex) ?? .cost,
-                date: dateText.toDateWith(format: .ddMMyy) ?? Date(),
-                sum: Double(sumText) ?? .zero,
-                category: category,
-                note: noteText
-            )
-            
-            newUser.budgetItems.append(item)
-            
-            do {
-                try UserDefaultsService.saveUser(model: newUser)
-                return true
-            } catch {
-                triggerVibration(style: .medium)
-                print(error.localizedDescription)
-                return false
-            }
-        } else {
-            triggerVibration(style: .medium)
-            return false
-        }
-    }
-    
-    func validateFields() -> Bool {
-        let isValidDate = dateText.toDateWith(format: .ddMMyy) != nil
-        dropPointInSumIfItLastChar()
-        
-        if sumText.last == "." {
-            sumText.removeLast()
-        }
-        
-        let isValidSum = Double(sumText) != nil
-        var isValidCategory = !categoryText.isEmpty
-        if !getAllCategories().contains(where: {$0.name == categoryText}) {
-            isValidCategory = false
-            categoryText = ""
-        }
-        let isValidNote = !noteText.isEmpty
-
-        return isValidDate && isValidSum && isValidCategory && isValidNote
-    }
-    
-    func dropPointInSumIfItLastChar() {
-        if sumText.hasSuffix(".") || sumText.hasSuffix(".") {
-            sumText = String(sumText.dropLast())
+            viewModel.dropPointInSumIfItLastChar()
         }
     }
     
     func triggerVibration(style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)
         generator.impactOccurred()
-    }
-    
-    func getUserData() -> UserModel? {
-        return try? UserDefaultsService.getUser()
-    }
-    
-    func getAllCategories() -> [Category]  {
-        let personalItems = UserDefaultsService.getPersonalCategories()
-        return StaticFiles.Categories.all + personalItems
     }
 }
 

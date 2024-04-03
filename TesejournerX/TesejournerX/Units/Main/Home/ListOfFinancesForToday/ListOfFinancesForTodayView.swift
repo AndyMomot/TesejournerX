@@ -10,6 +10,9 @@ import SwiftUI
 struct ListOfFinancesForTodayView: View {
     var items: [UserModel.BudgetItem]
     
+    var onDelete: ((UserModel.BudgetItem) -> Void)?
+    var onEdit: ((UserModel.BudgetItem) -> Void)?
+    
     var body: some View {
         List {
             
@@ -24,6 +27,17 @@ struct ListOfFinancesForTodayView: View {
                 ForEach(items, id: \.id) { item in
                     Section {
                         DayTransactionCell(item: item)
+                            .swipeActions {
+                                Button("Edytować") {
+                                    onEdit?(item)
+                                }
+                                .tint(.green)
+                                
+                                Button("Usuwać") {
+                                    onDelete?(item)
+                                }
+                                .tint(.red)
+                            }
                     }
                 }
                 .onDelete(perform: delete)
@@ -42,12 +56,16 @@ private extension ListOfFinancesForTodayView {
         DispatchQueue.main.async {
             if let index = indexSet.first {
                 let itemToDelete = items[index]
-                var user = try? UserDefaultsService.getUser()
-                user?.budgetItems.removeAll(where: {
-                    $0.id == itemToDelete.id
-                })
-                guard let newUser = user else { return }
-                try? UserDefaultsService.saveUser(model: newUser)
+                
+                do {
+                    var user = try UserDefaultsService.getUser()
+                    user.budgetItems.removeAll(where: {
+                        $0.id == itemToDelete.id
+                    })
+                    try UserDefaultsService.saveUser(model: user)
+                } catch {
+                    print(error.localizedDescription)
+                }
             }
         }
     }

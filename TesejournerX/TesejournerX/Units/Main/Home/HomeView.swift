@@ -12,6 +12,8 @@ struct HomeView: View {
     @EnvironmentObject private var viewModel: AuthViewModel
     @ObservedObject var userDataPublisher = UserDataPublisher.shared
     
+    @StateObject private var homeViewModel = HomeViewModel()
+    
     @State private var currentDaysDate = Date()
     @State private var currentCalendarDate = Date()
     @State private var currentMonthDate = Date()
@@ -20,7 +22,9 @@ struct HomeView: View {
     @State private var topTabBarSelectedIndex = 0
     @State private var currentTabBarItem = Home.TopTabBarItem.days
     
-    @State var onPlusTapped = false
+    @State private var onPlusTapped = false
+    @State private var onEdit = false
+    @State private var showFavorites = false
     
     private var topTabBarItems = Home.TopTabBarItem.allCases.sorted(by: {$0.rawValue < $1.rawValue}).map {$0.title}
     @State private var balanceInfoData: [BalanceStatusView.StatusModel] = [
@@ -28,7 +32,9 @@ struct HomeView: View {
         .init(name: "Koszty", value: .zero),
         .init(name: "Łącznie", value: .zero)
     ]
+    
     @State private var budgetItems: [UserModel.BudgetItem] = []
+    @State private var budgetItemId: String?
     
     private var bounts = UIScreen.main.bounds
     
@@ -42,8 +48,7 @@ struct HomeView: View {
                     ZStack {
                         Asset.homeBg.swiftUIImage
                             .resizable()
-                            .scaledToFill()
-                            .offset(.init(width: .zero, height: -bounts.height * 0.14))
+                            .ignoresSafeArea(edges: .bottom)
                         
                         VStack(spacing: .zero) {
                             DateSwitcherView(title: getTopTabBarTitle()) {
@@ -59,9 +64,25 @@ struct HomeView: View {
                                 
                                 switch currentTabBarItem {
                                 case .days:
-                                    ListOfFinancesForTodayView(items: budgetItems.filter({
+                                    let items = budgetItems.filter {
                                         $0.date.isDayEqual(to: currentDaysDate)
-                                    }))
+                                    }
+                                    
+                                    ListOfFinancesForTodayView(items: items, onDelete: { item in
+                                        homeViewModel.delete(item: item) {
+                                            getUserData()
+                                        }
+                                    }, onEdit: { item in
+                                        budgetItemId = item.id
+                                        
+                                    })
+                                    .fullScreenCover(isPresented: $onEdit) {
+                                        if let id = budgetItemId {
+                                            AddBudgetItemView(editItemID: id) {
+                                                budgetItemId = nil
+                                            }
+                                        }
+                                    }
                                     .swipeGesture { direction in
                                         switch direction {
                                         case .left:
@@ -131,6 +152,9 @@ struct HomeView: View {
             .fullScreenCover(isPresented: $onPlusTapped) {
                 AddBudgetItemView()
             }
+            .fullScreenCover(isPresented: $showFavorites) {
+                FavoritesView()
+            }
             .navigationBarTitle("Główny", displayMode: .inline)
             .navigationBarItems(
                 leading:
@@ -142,7 +166,7 @@ struct HomeView: View {
                 trailing:
                     HStack(spacing: 20) {
                         Button(action: {
-                            
+                            showFavorites.toggle()
                         }, label: {
                             Image(Asset.star.name)
                         })
@@ -161,6 +185,11 @@ struct HomeView: View {
             .onChange(of: topTabBarSelectedIndex) { newValue in
                 if let newTabBarItem = Home.TopTabBarItem.init(rawValue: newValue) {
                     currentTabBarItem = newTabBarItem
+                }
+            }
+            .onChange(of: budgetItemId) { newValue in
+                if newValue != nil {
+                    onEdit.toggle()
                 }
             }
         }

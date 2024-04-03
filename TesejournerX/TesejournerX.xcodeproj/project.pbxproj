@@ -52,12 +52,15 @@
 		4798BB012BAB581800C9F429 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4798BAFF2BAB581800C9F429 /* LaunchScreen.storyboard */; };
 		4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB092BAB597000C9F429 /* RootContentView.swift */; };
 		4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */; };
-		47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B7428E2BB728740038EFA5 /* HomeModels.swift */; };
 		47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E367732BBAB25700F45CDF /* CustomCalendarView.swift */; };
 		47E367772BBAB81200F45CDF /* DayOfMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */; };
 		47E828992BACC9A900534EF8 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828962BACC9A900534EF8 /* README.txt */; };
 		47E8289A2BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47E828972BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf */; };
 		47E8289B2BACC9A900534EF8 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828982BACC9A900534EF8 /* OFL.txt */; };
+		47ECF18D2BBD7CDA000247E0 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF18C2BBD7CDA000247E0 /* FavoritesView.swift */; };
+		47ECF18F2BBD7E7E000247E0 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF18E2BBD7E7E000247E0 /* FavoritesViewModel.swift */; };
+		47ECF1912BBDB120000247E0 /* AddBudgetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF1902BBDB120000247E0 /* AddBudgetItemViewModel.swift */; };
+		47ECF1932BBDBDBC000247E0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF1922BBDBDBC000247E0 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -117,12 +120,15 @@
 		4798BB022BAB581800C9F429 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4798BB092BAB597000C9F429 /* RootContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContentView.swift; sourceTree = "<group>"; };
 		4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
-		47B7428E2BB728740038EFA5 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		47E367732BBAB25700F45CDF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfMonthCell.swift; sourceTree = "<group>"; };
 		47E828962BACC9A900534EF8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		47E828972BACC9A900534EF8 /* LexendDeca-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LexendDeca-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		47E828982BACC9A900534EF8 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		47ECF18C2BBD7CDA000247E0 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		47ECF18E2BBD7E7E000247E0 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		47ECF1902BBDB120000247E0 /* AddBudgetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetItemViewModel.swift; sourceTree = "<group>"; };
+		47ECF1922BBDBDBC000247E0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				475C50712BB09B3C00618F2C /* AddBudgetItemView.swift */,
+				47ECF1902BBDB120000247E0 /* AddBudgetItemViewModel.swift */,
 			);
 			path = AddBudgetItem;
 			sourceTree = "<group>";
@@ -361,6 +368,7 @@
 			children = (
 				4773ECE22BADDD40007EFD34 /* TabBar */,
 				4773E7382BADA0D7007EFD34 /* Home */,
+				47ECF18B2BBD7CC0000247E0 /* Favorites */,
 				476D20212BB31CA800FE4469 /* Budget */,
 			);
 			path = Main;
@@ -370,10 +378,10 @@
 			isa = PBXGroup;
 			children = (
 				4773E7392BADA0E6007EFD34 /* HomeView.swift */,
-				47B7428E2BB728740038EFA5 /* HomeModels.swift */,
-				47692D302BB5C4520057A8DC /* ListOfFinancesForToday */,
+				47ECF1922BBDBDBC000247E0 /* HomeViewModel.swift */,
 				47E367722BBAB24E00F45CDF /* CustomCalendar */,
 				47692D312BB5E8140057A8DC /* ListOfFinancesForMonth */,
+				47692D302BB5C4520057A8DC /* ListOfFinancesForToday */,
 				472B4A8F2BBBF7E1005A74BD /* Details */,
 			);
 			path = Home;
@@ -540,6 +548,15 @@
 			path = CustomCalendar;
 			sourceTree = "<group>";
 		};
+		47ECF18B2BBD7CC0000247E0 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				47ECF18C2BBD7CDA000247E0 /* FavoritesView.swift */,
+				47ECF18E2BBD7E7E000247E0 /* FavoritesViewModel.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -639,10 +656,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47ECF18D2BBD7CDA000247E0 /* FavoritesView.swift in Sources */,
 				4773E7302BAD82CF007EFD34 /* SwiftUIViewWebView.swift in Sources */,
 				472B491E2BAC89F80048355A /* Colors.generated.swift in Sources */,
 				4773ECF52BADF497007EFD34 /* TopTabView.swift in Sources */,
 				4773ECE42BADDD91007EFD34 /* TabBarView.swift in Sources */,
+				47ECF1932BBDBDBC000247E0 /* HomeViewModel.swift in Sources */,
 				4798BAF92BAB581700C9F429 /* ViewController.swift in Sources */,
 				4773ECE62BADDF0A007EFD34 /* CustomTabBarView.swift in Sources */,
 				4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */,
@@ -651,8 +670,8 @@
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				47692D372BB5E8590057A8DC /* MonthTransactionCell.swift in Sources */,
 				472B4A942BBC012F005A74BD /* ProgressView.swift in Sources */,
-				47B7428F2BB728740038EFA5 /* HomeModels.swift in Sources */,
 				476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */,
+				47ECF1912BBDB120000247E0 /* AddBudgetItemViewModel.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
 				476D20232BB3205000FE4469 /* CategoryCell.swift in Sources */,
 				475C507A2BB0A4AB00618F2C /* OrangePlusButtoView.swift in Sources */,
@@ -672,6 +691,7 @@
 				4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */,
 				4773ECF22BADF10C007EFD34 /* DateSwitcherView.swift in Sources */,
 				4773ECEF2BADEED8007EFD34 /* View+Additions.swift in Sources */,
+				47ECF18F2BBD7E7E000247E0 /* FavoritesViewModel.swift in Sources */,
 				475C50722BB09B3C00618F2C /* AddBudgetItemView.swift in Sources */,
 				4773E72D2BAD7BB2007EFD34 /* NextButtonView.swift in Sources */,
 				475C506A2BB08D6800618F2C /* UserModel.swift in Sources */,
