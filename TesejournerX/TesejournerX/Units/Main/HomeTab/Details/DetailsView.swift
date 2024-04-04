@@ -120,7 +120,7 @@ private extension DetailsView {
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.green.opacity(0.3)
+            Colors.silver.swiftUIColor
             
             DetailsView(date: .init())
         }

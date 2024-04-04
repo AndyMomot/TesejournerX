@@ -84,7 +84,9 @@ struct CustomCalendarView: View {
         }
         .onAppear {
             let user = try? UserDefaultsService.getUser()
-            itemsGroupedByDay = user?.getGroupedBudgetItemsBy([.day, .month, .year], with: .ddMMyy) ?? []
+            itemsGroupedByDay = user?.getGroupedBudgetItemsBy([.day, .month, .year],
+                                                              with: .ddMMyy,
+                                                              items: user?.budgetItems ?? []) ?? []
         }
     }
 }

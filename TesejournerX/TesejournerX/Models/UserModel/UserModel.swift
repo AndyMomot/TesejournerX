@@ -28,9 +28,9 @@ struct UserModel: Codable {
     private(set) lazy var costs = budgetItems.filter {$0.type == .cost}.reduce(0) {$0 + $1.sum}
     private(set) lazy var balance = income - costs
     
-    func getGroupedBudgetItemsBy(_ components: Set<Calendar.Component>, with format: Date.Format) -> [[UserModel.BudgetItem]] {
+    func getGroupedBudgetItemsBy(_ components: Set<Calendar.Component>, with format: Date.Format, items: [BudgetItem]) -> [[UserModel.BudgetItem]] {
         // Создание словаря, в котором ключи - это components, а значения - это массив элементов с этими components
-        let groupedByMonth = Dictionary(grouping: budgetItems) { item -> String in
+        let groupedByMonth = Dictionary(grouping: items) { item -> String in
             let calendar = Calendar.current
             let components = calendar.dateComponents(components, from: item.date)
             let dateFormatter = DateFormatter()
@@ -56,7 +56,7 @@ struct UserModel: Codable {
 }
 
 extension UserModel {
-    struct BudgetItem: Codable {
+    struct BudgetItem: Codable, Identifiable, Hashable {
         var id = UUID().uuidString
         var isFavorite: Bool
         var type: ItemType

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Category: Codable, Equatable {
+struct Category: Codable, Equatable, Hashable {
     var id: String = UUID().uuidString
     var image: String
     var name: String

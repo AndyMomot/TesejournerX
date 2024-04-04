@@ -16,7 +16,7 @@ struct TabBarView: View {
                 HomeView()
                     .tag(TabBarSelectionView.main.rawValue)
                 
-                Text("budget")
+                BudgetView()
                     .tag(TabBarSelectionView.budget.rawValue)
                 
                 Text("help")

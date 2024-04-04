@@ -52,6 +52,7 @@
 		4798BB012BAB581800C9F429 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4798BAFF2BAB581800C9F429 /* LaunchScreen.storyboard */; };
 		4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB092BAB597000C9F429 /* RootContentView.swift */; };
 		4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */; };
+		47C9A30C2BBF0BAA00E5C102 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C9A30B2BBF0BAA00E5C102 /* SearchBar.swift */; };
 		47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E367732BBAB25700F45CDF /* CustomCalendarView.swift */; };
 		47E367772BBAB81200F45CDF /* DayOfMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */; };
 		47E828992BACC9A900534EF8 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47E828962BACC9A900534EF8 /* README.txt */; };
@@ -61,6 +62,10 @@
 		47ECF18F2BBD7E7E000247E0 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF18E2BBD7E7E000247E0 /* FavoritesViewModel.swift */; };
 		47ECF1912BBDB120000247E0 /* AddBudgetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF1902BBDB120000247E0 /* AddBudgetItemViewModel.swift */; };
 		47ECF1932BBDBDBC000247E0 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47ECF1922BBDBDBC000247E0 /* HomeViewModel.swift */; };
+		47FACFBC2BBE942C0067F501 /* BudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFBB2BBE942C0067F501 /* BudgetView.swift */; };
+		47FACFBE2BBE948E0067F501 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFBD2BBE948E0067F501 /* BudgetViewModel.swift */; };
+		47FACFC12BBE9BA60067F501 /* IncomCostProgresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFC02BBE9BA60067F501 /* IncomCostProgresView.swift */; };
+		47FACFC42BBEA3BD0067F501 /* WidthPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFC32BBEA3BD0067F501 /* WidthPreferenceKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,6 +125,7 @@
 		4798BB022BAB581800C9F429 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4798BB092BAB597000C9F429 /* RootContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootContentView.swift; sourceTree = "<group>"; };
 		4798BB122BAB610C00C9F429 /* UserDefaultsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsService.swift; sourceTree = "<group>"; };
+		47C9A30B2BBF0BAA00E5C102 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		47E367732BBAB25700F45CDF /* CustomCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarView.swift; sourceTree = "<group>"; };
 		47E367762BBAB81200F45CDF /* DayOfMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfMonthCell.swift; sourceTree = "<group>"; };
 		47E828962BACC9A900534EF8 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -129,6 +135,10 @@
 		47ECF18E2BBD7E7E000247E0 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		47ECF1902BBDB120000247E0 /* AddBudgetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetItemViewModel.swift; sourceTree = "<group>"; };
 		47ECF1922BBDBDBC000247E0 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		47FACFBB2BBE942C0067F501 /* BudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetView.swift; sourceTree = "<group>"; };
+		47FACFBD2BBE948E0067F501 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
+		47FACFC02BBE9BA60067F501 /* IncomCostProgresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomCostProgresView.swift; sourceTree = "<group>"; };
+		47FACFC32BBEA3BD0067F501 /* WidthPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthPreferenceKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,16 +316,6 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		476D20212BB31CA800FE4469 /* Budget */ = {
-			isa = PBXGroup;
-			children = (
-				475C506F2BB09B1A00618F2C /* BalanceStatus */,
-				475C50702BB09B2000618F2C /* AddBudgetItem */,
-				476D201E2BB31C7400FE4469 /* Categories */,
-			);
-			path = Budget;
-			sourceTree = "<group>";
-		};
 		4773E7272BAD7959007EFD34 /* Agreements */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +327,8 @@
 		4773E72A2BAD7B90007EFD34 /* ReusableViews */ = {
 			isa = PBXGroup;
 			children = (
+				47C9A30A2BBF0BA100E5C102 /* SearchBar */,
+				47FACFBF2BBE9B860067F501 /* IncomCostProgres */,
 				472B4A922BBC011B005A74BD /* ProgressView */,
 				476D1A752BB205A700FE4469 /* DatePiker */,
 				475C50782BB0A4A200618F2C /* OrangePlusButton */,
@@ -335,6 +337,8 @@
 				4773ECF02BADF0F6007EFD34 /* DateSwitcher */,
 				4773E72E2BAD82CF007EFD34 /* WebView */,
 				4773E72B2BAD7BA6007EFD34 /* NextButton */,
+				475C506F2BB09B1A00618F2C /* BalanceStatus */,
+				476D201E2BB31C7400FE4469 /* Categories */,
 			);
 			path = ReusableViews;
 			sourceTree = "<group>";
@@ -367,14 +371,15 @@
 			isa = PBXGroup;
 			children = (
 				4773ECE22BADDD40007EFD34 /* TabBar */,
-				4773E7382BADA0D7007EFD34 /* Home */,
+				4773E7382BADA0D7007EFD34 /* HomeTab */,
 				47ECF18B2BBD7CC0000247E0 /* Favorites */,
-				476D20212BB31CA800FE4469 /* Budget */,
+				475C50702BB09B2000618F2C /* AddBudgetItem */,
+				47FACFB92BBE93F00067F501 /* BudgetTab */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		4773E7382BADA0D7007EFD34 /* Home */ = {
+		4773E7382BADA0D7007EFD34 /* HomeTab */ = {
 			isa = PBXGroup;
 			children = (
 				4773E7392BADA0E6007EFD34 /* HomeView.swift */,
@@ -384,7 +389,7 @@
 				47692D302BB5C4520057A8DC /* ListOfFinancesForToday */,
 				472B4A8F2BBBF7E1005A74BD /* Details */,
 			);
-			path = Home;
+			path = HomeTab;
 			sourceTree = "<group>";
 		};
 		4773ECE22BADDD40007EFD34 /* TabBar */ = {
@@ -495,6 +500,7 @@
 		4798BB0D2BAB603800C9F429 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				47FACFC22BBEA39C0067F501 /* WidthPreferenceKey */,
 				4773E72A2BAD7B90007EFD34 /* ReusableViews */,
 			);
 			path = Helpers;
@@ -539,6 +545,14 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
+		47C9A30A2BBF0BA100E5C102 /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				47C9A30B2BBF0BAA00E5C102 /* SearchBar.swift */,
+			);
+			path = SearchBar;
+			sourceTree = "<group>";
+		};
 		47E367722BBAB24E00F45CDF /* CustomCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -555,6 +569,31 @@
 				47ECF18E2BBD7E7E000247E0 /* FavoritesViewModel.swift */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		47FACFB92BBE93F00067F501 /* BudgetTab */ = {
+			isa = PBXGroup;
+			children = (
+				47FACFBB2BBE942C0067F501 /* BudgetView.swift */,
+				47FACFBD2BBE948E0067F501 /* BudgetViewModel.swift */,
+			);
+			path = BudgetTab;
+			sourceTree = "<group>";
+		};
+		47FACFBF2BBE9B860067F501 /* IncomCostProgres */ = {
+			isa = PBXGroup;
+			children = (
+				47FACFC02BBE9BA60067F501 /* IncomCostProgresView.swift */,
+			);
+			path = IncomCostProgres;
+			sourceTree = "<group>";
+		};
+		47FACFC22BBEA39C0067F501 /* WidthPreferenceKey */ = {
+			isa = PBXGroup;
+			children = (
+				47FACFC32BBEA3BD0067F501 /* WidthPreferenceKey.swift */,
+			);
+			path = WidthPreferenceKey;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -657,11 +696,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				47ECF18D2BBD7CDA000247E0 /* FavoritesView.swift in Sources */,
+				47FACFC12BBE9BA60067F501 /* IncomCostProgresView.swift in Sources */,
 				4773E7302BAD82CF007EFD34 /* SwiftUIViewWebView.swift in Sources */,
 				472B491E2BAC89F80048355A /* Colors.generated.swift in Sources */,
 				4773ECF52BADF497007EFD34 /* TopTabView.swift in Sources */,
 				4773ECE42BADDD91007EFD34 /* TabBarView.swift in Sources */,
 				47ECF1932BBDBDBC000247E0 /* HomeViewModel.swift in Sources */,
+				47C9A30C2BBF0BAA00E5C102 /* SearchBar.swift in Sources */,
 				4798BAF92BAB581700C9F429 /* ViewController.swift in Sources */,
 				4773ECE62BADDF0A007EFD34 /* CustomTabBarView.swift in Sources */,
 				4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */,
@@ -680,6 +721,7 @@
 				472B49202BAC8A080048355A /* Images.generated.swift in Sources */,
 				4773ECF92BADFD81007EFD34 /* Double+Additions.swift in Sources */,
 				476CC6162BB45024003EF965 /* DayTransactionCell.swift in Sources */,
+				47FACFC42BBEA3BD0067F501 /* WidthPreferenceKey.swift in Sources */,
 				47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */,
 				475C50772BB0A40700618F2C /* InputView.swift in Sources */,
 				4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */,
@@ -689,6 +731,7 @@
 				47692D2F2BB5BE510057A8DC /* ListOfFinancesForTodayView.swift in Sources */,
 				4773E7332BAD832F007EFD34 /* StaticFiles.swift in Sources */,
 				4798BB0A2BAB597000C9F429 /* RootContentView.swift in Sources */,
+				47FACFBC2BBE942C0067F501 /* BudgetView.swift in Sources */,
 				4773ECF22BADF10C007EFD34 /* DateSwitcherView.swift in Sources */,
 				4773ECEF2BADEED8007EFD34 /* View+Additions.swift in Sources */,
 				47ECF18F2BBD7E7E000247E0 /* FavoritesViewModel.swift in Sources */,
@@ -699,6 +742,7 @@
 				4773ECF72BADFB3E007EFD34 /* BalanceStatusView.swift in Sources */,
 				4798BAF72BAB581700C9F429 /* SceneDelegate.swift in Sources */,
 				472B49222BAC8A140048355A /* Fonts.generated.swift in Sources */,
+				47FACFBE2BBE948E0067F501 /* BudgetViewModel.swift in Sources */,
 				475C507D2BB0A84F00618F2C /* Category.swift in Sources */,
 				476D20252BB3419900FE4469 /* String+Additions.swift in Sources */,
 			);

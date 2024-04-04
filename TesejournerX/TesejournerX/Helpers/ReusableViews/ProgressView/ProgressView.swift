@@ -10,11 +10,13 @@ import SwiftUI
 struct ProgressView: View {
     var maxValue: Double
     var currentValue: Double
+    var showBottomValues: Bool
     private var percent: Double
     
-    init(maxValue: Double, currentValue: Double) {
+    init(maxValue: Double, currentValue: Double, showBottomValues: Bool = true) {
         self.maxValue = maxValue
         self.currentValue = currentValue
+        self.showBottomValues = showBottomValues
         
         if currentValue == .zero || maxValue == .zero {
             percent = .zero
@@ -58,7 +60,7 @@ struct ProgressView: View {
                             if percent == .zero {
                                 return "0"
                             } else {
-                                return (percent * 100.0).string()
+                                return (percent * 100.0).string(maximumFractionDigits: 1)
                             }
                         }
                         Text("\(number)%")
@@ -68,14 +70,16 @@ struct ProgressView: View {
                     }
                 }
                 
-                HStack(alignment: .center, spacing: .zero) {
-                    Text("\(currentValue.string())")
-                    Spacer(minLength: .zero)
-                    Text("\((maxValue - currentValue).string())")
+                if showBottomValues {
+                    HStack(alignment: .center, spacing: .zero) {
+                        Text("\(currentValue.string())")
+                        Spacer(minLength: .zero)
+                        Text("\((maxValue - currentValue).string())")
+                    }
+                    .foregroundColor(.black)
+                    .font(Fonts.LexendDeca.light.swiftUIFont(size: 12))
+                    .padding(.horizontal, 4)
                 }
-                .foregroundColor(.black)
-                .font(Fonts.LexendDeca.light.swiftUIFont(size: 12))
-                .padding(.horizontal, 4)
             }
         }
         .onAppear {
@@ -95,7 +99,7 @@ struct ProgressView_Previews: PreviewProvider {
         ZStack {
             Color.green.opacity(0.3)
             
-            ProgressView(maxValue: 2500, currentValue: 600)
+            ProgressView(maxValue: 2500, currentValue: 600, showBottomValues: true)
                 .previewLayout(.sizeThatFits)
                 .padding()
         }
