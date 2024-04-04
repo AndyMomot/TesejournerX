@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomTabBarView: View {
     @Binding var selectedItem: Int
     
-    private let height = UIScreen.main.bounds.height * 0.1
+    private let height = UIScreen.main.bounds.height * 0.11
     
     private let tabBarItems: [TabBarItem] = [
         .init(image: Asset.homeTab.name,

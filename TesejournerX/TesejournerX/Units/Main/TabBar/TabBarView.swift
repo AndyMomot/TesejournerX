@@ -19,7 +19,7 @@ struct TabBarView: View {
                 BudgetView()
                     .tag(TabBarSelectionView.budget.rawValue)
                 
-                Text("help")
+                HelpView()
                     .tag(TabBarSelectionView.help.rawValue)
                 
                 Text("settings")

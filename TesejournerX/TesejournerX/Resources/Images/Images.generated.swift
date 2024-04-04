@@ -29,6 +29,7 @@ internal enum Asset {
   internal static let healthCatecory = ImageAsset(name: "healthCatecory")
   internal static let sportCategory = ImageAsset(name: "sportCategory")
   internal static let yogaCategory = ImageAsset(name: "yogaCategory")
+  internal static let message = ImageAsset(name: "message")
   internal static let emptyFolder = ImageAsset(name: "emptyFolder")
   internal static let homeBg = ImageAsset(name: "homeBg")
   internal static let agreenents = ImageAsset(name: "agreenents")
