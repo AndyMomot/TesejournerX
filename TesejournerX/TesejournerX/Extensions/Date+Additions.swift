@@ -64,6 +64,23 @@ extension Date {
         }
     }
     
+    func isMonthEqual(to date: Date) -> Bool {
+        let calendar = Calendar.current
+        let components1 = calendar.dateComponents([.month, .year], from: self)
+        let components2 = calendar.dateComponents([.month, .year], from: date)
+
+        if let month1 = components1.month, let year1 = components1.year,
+           let month2 = components2.month, let year2 = components2.year {
+            if month1 == month2 && year1 == year2 {
+               return true
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
+    }
+    
     func isYearEqual(to date: Date) -> Bool {
         let calendar = Calendar.current
         let components1 = calendar.dateComponents([.year], from: self)

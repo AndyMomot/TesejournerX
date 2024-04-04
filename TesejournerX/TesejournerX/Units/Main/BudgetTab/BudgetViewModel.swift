@@ -10,8 +10,7 @@ import Foundation
 extension BudgetView {
     final class BudgetViewModel: ObservableObject {
         
-        @Published private var currentIncomeDate = Date()
-        @Published private var currentCostDate = Date()
+        @Published private var currentDate = Date()
         @Published var currentMonth = ""
         
         @Published var currentTabBarItem = TopTabBarItem.income
@@ -29,25 +28,13 @@ extension BudgetView {
         @Published var searchTearm = ""
         
         func getTopTabBarTitle() -> String {
-            switch currentTabBarItem {
-            case .income:
-                return currentIncomeDate.toString(format: .monthNameYear)
-            case .cost:
-                return currentCostDate.toString(format: .monthNameYear)
-            }
+            return currentDate.toString(format: .monthNameYear)
         }
         
         func onDateSwithcerTapped(onLeft: Bool) {
             let value: Int = onLeft ? -1 : 1
-            
-            switch currentTabBarItem {
-            case .income:
-                currentIncomeDate = currentIncomeDate.addOrSubtract(component: .month, value: value)
-            case .cost:
-                currentCostDate = currentCostDate.addOrSubtract(component: .month, value: value)
-            }
-            
-            setMontName()
+            currentDate = currentDate.addOrSubtract(component: .month, value: value)
+            setData()
         }
         
         func getUser() -> UserModel? {
@@ -56,10 +43,12 @@ extension BudgetView {
         
         func setData() {
             setMontName()
-            guard var user = getUser() else { return }
-            income = user.income
-            cost = user.costs
-            balance = user.balance
+            guard let user = getUser() else { return }
+            
+            let items = user.budgetItems.filter { $0.date.isMonthEqual(to: currentDate) }
+            income = items.filter {$0.type == .income}.reduce(0) {$0 + $1.sum}
+            cost = items.filter {$0.type == .cost}.reduce(0) {$0 + $1.sum}
+            balance = income - cost
             
             topTabBarItems = ["Dochód \(income.string(maximumFractionDigits: 1))",
                               "Koszty \(cost.string(maximumFractionDigits: 1))"]
@@ -75,31 +64,21 @@ extension BudgetView {
         }
         
         func setMontName() {
-            switch currentTabBarItem {
-            case .income:
-                currentMonth = currentIncomeDate.toString(format: .month).capitalized
-            case .cost:
-                currentMonth = currentCostDate.toString(format: .month).capitalized
-            }
+            currentMonth = currentDate.toString(format: .month).capitalized
         }
         
         func makeDataSource() {
+            dataSource = []
+            
             guard let user = getUser() else { return }
             var itemsSortedByDate: [[UserModel.BudgetItem]] = []
             var groupedItemsByCategory: [String: [UserModel.BudgetItem]] = [:]
             
-            switch currentTabBarItem {
-            case .income:
-                let items = user.budgetItems.filter { $0.type == .income }
-                itemsSortedByDate = user.getGroupedBudgetItemsBy([.month, .year],
-                                                                 with: .monthNameYear,
-                                                                 items: items)
-            case .cost:
-                let items = user.budgetItems.filter { $0.type == .cost }
-                itemsSortedByDate = user.getGroupedBudgetItemsBy([.month, .year],
-                                                                 with: .monthNameYear,
-                                                                 items: items)
-            }
+            var items = user.budgetItems.filter { $0.type == .income }
+            items = items.filter { $0.date.isMonthEqual(to: currentDate) }
+            itemsSortedByDate = user.getGroupedBudgetItemsBy([.month, .year],
+                                                             with: .monthNameYear,
+                                                             items: items)
             
             for items in itemsSortedByDate {
                 for item in items {
