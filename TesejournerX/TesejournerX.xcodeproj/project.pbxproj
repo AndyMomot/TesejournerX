@@ -69,6 +69,10 @@
 		47FACFBE2BBE948E0067F501 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFBD2BBE948E0067F501 /* BudgetViewModel.swift */; };
 		47FACFC12BBE9BA60067F501 /* IncomCostProgresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFC02BBE9BA60067F501 /* IncomCostProgresView.swift */; };
 		47FACFC42BBEA3BD0067F501 /* WidthPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FACFC32BBEA3BD0067F501 /* WidthPreferenceKey.swift */; };
+		47FF077B2BBFD39E0091372B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF077A2BBFD39E0091372B /* SettingsView.swift */; };
+		47FF077D2BBFD3B70091372B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF077C2BBFD3B70091372B /* SettingsViewModel.swift */; };
+		47FF07802BBFE23D0091372B /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF077F2BBFE23D0091372B /* SettingsCell.swift */; };
+		47FF07822BBFE85E0091372B /* SettingsCell+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF07812BBFE85E0091372B /* SettingsCell+Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +149,10 @@
 		47FACFBD2BBE948E0067F501 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
 		47FACFC02BBE9BA60067F501 /* IncomCostProgresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomCostProgresView.swift; sourceTree = "<group>"; };
 		47FACFC32BBEA3BD0067F501 /* WidthPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidthPreferenceKey.swift; sourceTree = "<group>"; };
+		47FF077A2BBFD39E0091372B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		47FF077C2BBFD3B70091372B /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		47FF077F2BBFE23D0091372B /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		47FF07812BBFE85E0091372B /* SettingsCell+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsCell+Model.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +390,7 @@
 				475C50702BB09B2000618F2C /* AddBudgetItem */,
 				47FACFB92BBE93F00067F501 /* BudgetTab */,
 				47C9A30D2BBF117600E5C102 /* HelpTab */,
+				47FF07792BBFD3820091372B /* SettingsTab */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -613,6 +622,25 @@
 			path = WidthPreferenceKey;
 			sourceTree = "<group>";
 		};
+		47FF07792BBFD3820091372B /* SettingsTab */ = {
+			isa = PBXGroup;
+			children = (
+				47FF077E2BBFE2280091372B /* Cells */,
+				47FF077A2BBFD39E0091372B /* SettingsView.swift */,
+				47FF077C2BBFD3B70091372B /* SettingsViewModel.swift */,
+			);
+			path = SettingsTab;
+			sourceTree = "<group>";
+		};
+		47FF077E2BBFE2280091372B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				47FF077F2BBFE23D0091372B /* SettingsCell.swift */,
+				47FF07812BBFE85E0091372B /* SettingsCell+Model.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -726,13 +754,16 @@
 				4773ECED2BADE923007EFD34 /* AuthViewModel.swift in Sources */,
 				4773E73A2BADA0E6007EFD34 /* HomeView.swift in Sources */,
 				47E367772BBAB81200F45CDF /* DayOfMonthCell.swift in Sources */,
+				47FF07802BBFE23D0091372B /* SettingsCell.swift in Sources */,
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				47692D372BB5E8590057A8DC /* MonthTransactionCell.swift in Sources */,
 				472B4A942BBC012F005A74BD /* ProgressView.swift in Sources */,
 				476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */,
 				47ECF1912BBDB120000247E0 /* AddBudgetItemViewModel.swift in Sources */,
+				47FF07822BBFE85E0091372B /* SettingsCell+Model.swift in Sources */,
 				472B492E2BAC99A30048355A /* LoadingView.swift in Sources */,
 				476D20232BB3205000FE4469 /* CategoryCell.swift in Sources */,
+				47FF077B2BBFD39E0091372B /* SettingsView.swift in Sources */,
 				475C507A2BB0A4AB00618F2C /* OrangePlusButtoView.swift in Sources */,
 				4798BB132BAB610C00C9F429 /* UserDefaultsService.swift in Sources */,
 				476D1A772BB205B500FE4469 /* DatePikerView.swift in Sources */,
@@ -741,6 +772,7 @@
 				476CC6162BB45024003EF965 /* DayTransactionCell.swift in Sources */,
 				47FACFC42BBEA3BD0067F501 /* WidthPreferenceKey.swift in Sources */,
 				47E367742BBAB25700F45CDF /* CustomCalendarView.swift in Sources */,
+				47FF077D2BBFD3B70091372B /* SettingsViewModel.swift in Sources */,
 				475C50772BB0A40700618F2C /* InputView.swift in Sources */,
 				4773E7292BAD797B007EFD34 /* AgreementsView.swift in Sources */,
 				472B4A912BBBF7F0005A74BD /* DetailsView.swift in Sources */,
@@ -903,7 +935,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46X6SS77JY;
+				DEVELOPMENT_TEAM = QTR5336WJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TesejournerX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TesejournerX;
@@ -935,7 +967,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 46X6SS77JY;
+				DEVELOPMENT_TEAM = QTR5336WJC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TesejournerX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TesejournerX;

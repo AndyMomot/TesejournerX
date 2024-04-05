@@ -22,7 +22,7 @@ struct TabBarView: View {
                 HelpView()
                     .tag(TabBarSelectionView.help.rawValue)
                 
-                Text("settings")
+                SettingsView()
                     .tag(TabBarSelectionView.settings.rawValue)
             }
             .tableStyle(.inset)

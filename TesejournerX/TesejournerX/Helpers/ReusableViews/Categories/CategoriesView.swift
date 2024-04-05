@@ -9,10 +9,11 @@ import SwiftUI
 
 struct CategoriesView: View {
     @Binding var showSelf: Bool
+    @Binding var selectedCategory: Category?
+    var canDismiss = false
+    @Environment(\.presentationMode) var presentationMode
     
     @State private var items = StaticFiles.Categories.all
-    @Binding var selectedCategory: Category?
-    
     @State private var showAddItemAlert = false
     @State private var newCategoryNameText = ""
     
@@ -32,6 +33,9 @@ struct CategoriesView: View {
                 Button {
                     withAnimation {
                         showSelf = false
+                        if canDismiss {
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
                     }
                 } label: {
                     Asset.crossWhite.swiftUIImage

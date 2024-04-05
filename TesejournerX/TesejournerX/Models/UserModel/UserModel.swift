@@ -22,6 +22,7 @@ final class UserDataPublisher: ObservableObject {
 
 struct UserModel: Codable {
     private(set) var id = 1
+    var name: String = ""
     var budgetItems: [BudgetItem] = []
     
     private(set) lazy var income = budgetItems.filter {$0.type == .income}.reduce(0) {$0 + $1.sum}
