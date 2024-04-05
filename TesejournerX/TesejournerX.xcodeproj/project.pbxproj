@@ -73,6 +73,7 @@
 		47FF077D2BBFD3B70091372B /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF077C2BBFD3B70091372B /* SettingsViewModel.swift */; };
 		47FF07802BBFE23D0091372B /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF077F2BBFE23D0091372B /* SettingsCell.swift */; };
 		47FF07822BBFE85E0091372B /* SettingsCell+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF07812BBFE85E0091372B /* SettingsCell+Model.swift */; };
+		47FF07842BC016620091372B /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FF07832BC016620091372B /* TabBarViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -153,6 +154,7 @@
 		47FF077C2BBFD3B70091372B /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		47FF077F2BBFE23D0091372B /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		47FF07812BBFE85E0091372B /* SettingsCell+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsCell+Model.swift"; sourceTree = "<group>"; };
+		47FF07832BC016620091372B /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				4773ECE32BADDD91007EFD34 /* TabBarView.swift */,
+				47FF07832BC016620091372B /* TabBarViewModel.swift */,
 				4773ECE52BADDF0A007EFD34 /* CustomTabBarView.swift */,
 			);
 			path = TabBar;
@@ -758,6 +761,7 @@
 				4798BAF52BAB581700C9F429 /* AppDelegate.swift in Sources */,
 				47692D372BB5E8590057A8DC /* MonthTransactionCell.swift in Sources */,
 				472B4A942BBC012F005A74BD /* ProgressView.swift in Sources */,
+				47FF07842BC016620091372B /* TabBarViewModel.swift in Sources */,
 				476D1A792BB206B600FE4469 /* Date+Additions.swift in Sources */,
 				47ECF1912BBDB120000247E0 /* AddBudgetItemViewModel.swift in Sources */,
 				47FF07822BBFE85E0091372B /* SettingsCell+Model.swift in Sources */,
@@ -935,7 +939,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QTR5336WJC;
+				DEVELOPMENT_TEAM = 46X6SS77JY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TesejournerX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TesejournerX;
@@ -967,7 +971,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = QTR5336WJC;
+				DEVELOPMENT_TEAM = 46X6SS77JY;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TesejournerX/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TesejournerX;

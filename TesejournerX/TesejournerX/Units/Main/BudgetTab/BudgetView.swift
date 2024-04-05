@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BudgetView: View {
     
+    @EnvironmentObject private var tabBarViewModel: TabBarView.TabBarViewModel
     @StateObject private var viewModel = BudgetViewModel()
     @ObservedObject var userDataPublisher = UserDataPublisher.shared
     
@@ -128,7 +129,7 @@ struct BudgetView: View {
                         })
                         
                         Button(action: {
-                            
+                            tabBarViewModel.selection = TabBarView.TabBarSelectionView.settings.rawValue
                         }, label: {
                             Image(Asset.sortingRight.name)
                         })

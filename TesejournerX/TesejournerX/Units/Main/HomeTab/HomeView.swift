@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    
-    @EnvironmentObject private var viewModel: AuthViewModel
     @ObservedObject var userDataPublisher = UserDataPublisher.shared
+    @EnvironmentObject private var viewModel: AuthViewModel
+    @EnvironmentObject private var tabBarViewModel: TabBarView.TabBarViewModel
     @StateObject private var homeViewModel = HomeViewModel()
     
     private var bounts = UIScreen.main.bounds
@@ -167,7 +167,7 @@ struct HomeView: View {
                         })
                         
                         Button(action: {
-                            
+                            tabBarViewModel.selection = TabBarView.TabBarSelectionView.settings.rawValue
                         }, label: {
                             Image(Asset.sortingRight.name)
                         })
