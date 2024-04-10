@@ -27,7 +27,7 @@ struct HelpView: View {
                         .padding(.top, 20)
                         .padding(.horizontal, 26)
                     
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         ForEach(viewModel.dataSource) { item in
                             HelpCell(model: item)
                         }
@@ -35,30 +35,31 @@ struct HelpView: View {
                     .padding(.horizontal, 26)
                 }
                 
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        
-                        NavigationLink {
-                            let url = URL(string: viewModel.heltURL)
-                            SwiftUIViewWebView(url: url)
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .foregroundColor(Colors.orange.swiftUIColor)
-                                .frame(width: bounts.width * 0.14)
-                                
-                                Asset.message.swiftUIImage
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: bounts.width * 0.07)
-                            }
-                            .padding(.trailing, 27)
-                            .padding(.bottom, 20)
-                        }
-                    }
-                }
+                // MARK: Chat button
+//                VStack {
+//                    Spacer()
+//                    HStack {
+//                        Spacer()
+//
+//                        NavigationLink {
+//                            let url = URL(string: viewModel.helpURL)
+//                            SwiftUIViewWebView(url: url)
+//                        } label: {
+//                            ZStack {
+//                                Circle()
+//                                    .foregroundColor(Colors.orange.swiftUIColor)
+//                                .frame(width: bounts.width * 0.14)
+//
+//                                Asset.message.swiftUIImage
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: bounts.width * 0.07)
+//                            }
+//                            .padding(.trailing, 27)
+//                            .padding(.bottom, 20)
+//                        }
+//                    }
+//                }
             }
             .navigationBarTitle("Pomoc i FAQ", displayMode: .inline)
             .navigationBarTitleTextColor(.white)

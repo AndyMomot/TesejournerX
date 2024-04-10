@@ -19,7 +19,7 @@ extension SettingsView {
         @Published var showBudgetSettings = false
         @Published var showHelp = false
         
-        var defaultURL = URL(string: "https://www.google.com")
+        var defaultURL = URL(string: StaticFiles.Links.support)
         
         var dataSource: [SettingsCell.CellType] = [
             .categoryConfiguration,

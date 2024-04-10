@@ -88,7 +88,7 @@ struct AgreementsView: View {
                                         .font(Fonts.LexendDeca.regular.swiftUIFont(size: 14))
                                     
                                     NavigationLink {
-                                        let url = URL(string: StaticFiles.Privacy.offerta)
+                                        let url = URL(string: StaticFiles.Links.offerta)
                                         SwiftUIViewWebView(url: url)
                                     } label: {
                                         Text("Polityka prywatności i Warunki korzystania z usługi.")

@@ -8,8 +8,9 @@
 import Foundation
 
 enum StaticFiles {
-    enum Privacy {
-        static let offerta = "https://www.google.com"
+    enum Links {
+        static let offerta = "https://tesejournerx.info"
+        static let support = "https://support.tesejournerx.info"
     }
     
     enum Categories {
